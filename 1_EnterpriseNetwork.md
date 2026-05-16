@@ -251,12 +251,8 @@ display cu | begin stp
 display stp vlan 111
 display stp vlan 112
 display stp vlan 50
-```
 
 немесе
-
-```shell
-# Verify Configuration
 
 display stp instance 1 brief
 display stp instance 2 brief
