@@ -626,23 +626,18 @@ commit
 **EdgeR1**
 
 ```shell
-ping 192.168.137.1
- Reply from 192.168.137.1: bytes=56 Sequence=2 ttl=128 time=10 ms
+ping 10.0.137.1
+ Reply from 10.0.137.1: bytes=56 Sequence=2 ttl=64 time=1 ms
 
 ping 8.8.8.8
- Request time out
+ Reply from 8.8.8.8: bytes=56 Sequence=2 ttl=103 time=75 ms
 ```
 
 Default Static Route
 ```shell
-ip route-static 0.0.0.0 0.0.0.0 192.168.137.1
+ip route-static 0.0.0.0 0.0.0.0 10.0.137.1
 
 display cu | include static
-```
-
-```shell
-ping 8.8.8.8
- Reply from 8.8.8.8: bytes=56 Sequence=1 ttl=107 time=90 ms
 ```
 
 Advertise the Default Route
@@ -656,27 +651,24 @@ ospf 1
 <EdgeR1> display ip routing-table
 
 Destination/Mask   Proto   Pre   Cost   Flags   NextHop         Interface
-       0.0.0.0/0   Static  60    0      RD      192.168.137.1   GigabitEthernet 0/0/1
+       0.0.0.0/0   Static  60    0      RD      10.0.137.1   GigabitEthernet 0/0/2
 ```
 
 ```shell
 <C1> display ip routing-table
 Destination/Mask   Proto   Pre   Cost   Flags   NextHop         Interface
-       0.0.0.0/0   O_ASE   150   1      D       10.1.1.101      GigabitEthernet 0/0/0
-
-<C1> display ospf routing
- Routing for ASEs
- Destination        Cost      Type       Tag         NextHop         AdvRouter
- 0.0.0.0/0          1         Type2      1           10.1.1.101      50.1.1.1
+       0.0.0.0/0   O_ASE   150   1      D       10.1.1.101      GigabitEthernet 1/0/1
 ```
 
+NAT (Easy IP)
 ```shell
 acl 2000
  rule permit source 172.16.111.0 0.0.0.255
  rule permit source 172.16.112.0 0.0.0.255
+ rule permit source 10.10.10.0 0.0.0.255
  quit
 
-int g0/0/1
+int g0/0/2
  nat outbound 2000
  quit
 ```
@@ -688,16 +680,14 @@ display nat outbound
 ```
 
 ```shell
-PC1> ping 8.8.8.8
-PC2> ping 8.8.8.8
-PC3> ping 8.8.8.8
-PC4> ping 8.8.8.8
+H1> ping 8.8.8.8
+H2> ping 8.8.8.8
+H3> ping 8.8.8.8
+H4> ping 8.8.8.8
  From 8.8.8.8: bytes=32 seq=3 ttl=105 time=156 ms
 ```
 ```shell
-PC1> ping google.com
-PC3> ping google.com
- From 142.250.181.238: bytes=32 seq=1 ttl=106 time=156 ms
+H1> ping google.com
 ```
 
 NAT Table
