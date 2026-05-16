@@ -32,6 +32,8 @@
 ## Step 1 – Configure Device Hostname
 
 ```shell
+# Access Layer Switches (A1, A2)
+
 system-view
 sysname A1
 
@@ -39,6 +41,8 @@ commit
 ```
 
 ```shell
+# Aggregation Layer Switches (D1, D2, SRV-D1)
+
 system-view
 sysname D1
 
@@ -46,6 +50,8 @@ commit
 ```
 
 ```shell
+# Core Layer Switches (C1, C2)
+
 system-view
 sysname C1
 
@@ -53,6 +59,8 @@ commit
 ```
 
 ```shell
+# Edge Router
+
 Username: super
 Password: super
 Warning: The password is already expired.
