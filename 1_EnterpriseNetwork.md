@@ -38,6 +38,27 @@ sysname A1
 commit
 ```
 
+```shell
+system-view
+sysname D1
+
+commit
+```
+
+```shell
+system-view
+sysname C1
+
+commit
+```
+
+```shell
+system-view
+sysname EdgeR1
+
+commit
+```
+
 ## Step 2 – Configure VLAN (Create VLANs and Access/Trunk Ports)
 
 **A1 and A2 Switch**
@@ -151,130 +172,15 @@ display int brief
 ```
 
 ```shell
-display eth-trunk 1
-```
-
----
-
-## Configure Access Layer Switches (A1, A2)
-
-Configure Device Hostname
-```shell
-system-view
-sysname A1
-
-commit
-```
-
-Create VLANs
-```shell
-vlan batch 111 112 50
-
-commit
-
-display vlan
-```
-
-Configure Access Port
-```shell
-interface g1/0/3
- port link-type access
- port default vlan 111
- quit
-
-interface g1/0/4
- port link-type access
- port default vlan 112
- quit
-
-commit
-
-display port vlan
-```
-
-Configure Trunk Port and Allowed VLANs
-```shell
-interface g1/0/1
- port link-type trunk
- port trunk allow-pass vlan 111 112 50
- quit
-
-interface g1/0/2
- port link-type trunk
- port trunk allow-pass vlan 111 112 50
- quit
-
-commit
-
-display port vlan
-```
-
-## Configure Aggregation Layer Switches (D1, D2)
-
-Configure Device Hostname
-```shell
-system-view
-sysname D1
-commit
-```
-
-Create VLANs
-```shell
-vlan batch 111 112 50
-
-commit
-
-display vlan
-```
-
-Configure Trunk Port and Allowed VLANs
-```shell
-interface g1/0/2
- port link-type trunk
- port trunk allow-pass vlan 111 112 50
- quit
-
-interface g1/0/3
- port link-type trunk
- port trunk allow-pass vlan 111 112 50
- quit
-
-commit
-
-display port vlan
-```
-
-Configure LACP Link Aggregation
-```shell
-interface Eth-Trunk 1                                          // Create Eth-Trunk
- port link-type trunk                                          // Trunk Port
- port trunk allow-pass vlan 111 112 50                         // Allowed VLANs         
- mode lacp-static                                              // Link Aggregation Mode
- quit
-
-commit
-```
-
-Add a Port to the Eth-Trunk
-```shell
-interface g1/0/11
- eth-trunk 1
- quit
-interface g1/0/12
- eth-trunk 1
- quit
-
-commit
-
-display int brief
-```
-
-```shell
 # Verify Configuration
+
 display eth-trunk 1
 ```
 
-Configure MSTP (Multiple Spanning Tree Protocol)
+## Step 4 – Configure MSTP (Multiple Spanning Tree Protocol)
+
+**D1 and D2 Switch**
+
 ```shell
 display stp
 
@@ -312,9 +218,7 @@ stp instance 1 root secondary
 stp instance 2 root primary
 ```
 
-## A1 and A2 Switch
-
-Configure MSTP (Multiple Spanning Tree Protocol)
+**A1 and A2 Switch**
 
 ```shell
 display stp
@@ -341,22 +245,27 @@ commit
 display cu | begin stp
 ```
 
-Verify Configuration
-
 ```shell
+# Verify Configuration
+
 display stp vlan 111
 display stp vlan 112
 display stp vlan 50
 ```
+
 немесе
+
 ```shell
+# Verify Configuration
+
 display stp instance 1 brief
 display stp instance 2 brief
 ```
 
-## Configure VRRP (Virtual Router Redundancy Protocol)
+## Step 5 – Configure VRRP (Virtual Router Redundancy Protocol)
 
-D1 Switch
+**D1 Switch**
+
 ```shell
 interface vlanif 111
  ip address 172.16.111.1 24
@@ -379,7 +288,8 @@ display ip int brief
 display vrrp brief
 ```
 
-D2 Switch
+**D2 Switch**
+
 ```shell
 interface vlanif 111
  ip address 172.16.111.2 24
@@ -401,9 +311,9 @@ display ip int brief
 display vrrp brief
 ```
 
-## Configure Single-Area OSPF
+## Step 6 – Configure Single-Area OSPF
 
-D1 Switch
+**D1 Switch**
 
 ```shell
 # Create VLANs
@@ -448,7 +358,7 @@ ospf 1 router-id 50.3.3.3
 display cu | begin ospf
 ```
 
-D2 Switch
+**D2 Switch**
 
 ```shell
 # Create VLANs
@@ -493,13 +403,7 @@ ospf 1 router-id 50.4.4.4
 display ospf peer brief
 ```
 
-C1 Switch
-```shell
-# Configure Device Hostname
-undo terminal monitor
-system-view
-sysname C1
-```
+**C1 Switch**
 
 ```shell
 interface g0/0/0
@@ -533,13 +437,33 @@ ospf 1 router-id 50.2.2.2
 display ospf peer brief
 ```
 
-EdgeR1 Router
+**SRV-D1**
+
 ```shell
-# Configure Device Hostname
-undo terminal monitor
-system-view
-sysname EdgeR1
+interface g0/0/0
+ ip address 172.16.128.67 24
+ quit
+interface Loopback 50
+ ip address 50.5.5.5 32
+ quit
+
+display ip int brief
 ```
+
+```shell
+display ip int brief
+
+ospf 1 router-id 50.5.5.5
+ area 0
+ network 172.16.128.0 0.0.0.255
+ network 50.5.5.5 0.0.0.0
+ quit
+ quit
+
+display ospf peer brief
+```
+
+**EdgeR1 Router**
 
 ```shell
 interface g0/0/0
@@ -583,38 +507,8 @@ ospf 1 router-id 50.1.1.1
 display ospf peer brief
 ```
 
-DHCP Router
-```shell
-undo terminal monitor
-system-view
-sysname DHCP
-```
+## Step 7 – Configure DHCP Server on Linux
 
-```shell
-interface g0/0/0
- ip address 172.16.128.67 24
- quit
-interface Loopback 50
- ip address 50.5.5.5 32
- quit
-
-display ip int brief
-```
-
-```shell
-display ip int brief
-
-ospf 1 router-id 50.5.5.5
- area 0
- network 172.16.128.0 0.0.0.255
- network 50.5.5.5 0.0.0.0
- quit
- quit
-
-display ospf peer brief
-```
-
-## Configure DHCP Server
 ```shell
 dhcp enable
 
@@ -648,7 +542,10 @@ display ip pool name VLAN111
 display dhcp server statistics
 ```
 
-DHCP Relay Agent (D1 and D2 Switch)
+## Step 8 – Configure DHCP Relay Agent
+
+**D1 and D2 Switch**
+
 ```shell
 dhcp enable
 
@@ -664,34 +561,15 @@ interface vlanif 112
 ```
 
 ```shell
-<DHCP> display dhcp server statistics
-
-DHCP Server Statistics:
- 
- Client Request          : 8
-  Dhcp Discover          : 4
-  Dhcp Request           : 4
-  Dhcp Decline           : 0
-  Dhcp Release           : 0
-  Dhcp Inform            : 0
-
-  Server Reply           : 8
-  Dhcp Offer             : 4
-  Dhcp Ack               : 4
-  Dhcp Nak               : 0
-  Bad Messages           : 0 
-```
-
-```shell
 PC1> ipconfig
 PC2> ipconfig
 PC3> ipconfig
 PC4> ipconfig /renew
 ```
 
-## Configure NAT (Easy IP)
+## Step 9 – Configure NAT (Easy IP)
 
-EdgeR1
+**EdgeR1**
 
 ```shell
 ping 192.168.137.1
