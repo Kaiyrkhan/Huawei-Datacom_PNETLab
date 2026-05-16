@@ -1,10 +1,10 @@
-# DHCP Server on Linux
+# Configure DHCP Server on Linux
 
 ### Network Topology
 ![Topology Enterprise Network Design](images/)  
 [Download Link for PNETLab Topology File](Topology)  
 
-## DHCP Server on Debian
+## Configure DHCP Server on Debian
 
 ### Scenario
 1) DHCP пакетін (package) орнату;
