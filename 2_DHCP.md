@@ -11,16 +11,16 @@
 2) DHCP серверді конфигурациялау;
 3) Нәтижені тексеру.
 
-### Debian Linux дистрибутивін баптау
+### Құрылғының атауын (Device Hostname) өзгерту
 ```shell
-Құрылғының атауын (Device Name) өзгерту
 $ sudo hostnamectl set-hostname dhcp
 $ sudo nano /etc/hosts
 127.0.1.1  dhcp
 $ bash
 ```
+
+### Желілік интерфейсті конфигурациялау
 ```shell
-Желілік интерфейсті конфигурациялау
 $ ip address
 $ sudo nano /etc/network/interfaces
   auto ens3
@@ -110,19 +110,6 @@ $ sudo dhcpd -t
 
 ```shell
 $ cat /var/lib/dhcp/dhcpd.leases
-```
-
-### DHCP Relay Agent құрылғыны конфигурациялау
-```shell
-D1(config)# interface vlan 111
-D1(config)# ip helper-address 10.10.10.67
-D1(config)# interface vlan 112
-D1(config)# ip helper-address 10.10.10.67
-
-D2(config)# interface vlan 111
-D2(config)# ip helper-address 10.10.10.67
-D2(config)# interface vlan 112
-D2(config)# ip helper-address 10.10.10.67
 ```
 
 ### Нәтижені тексеру
