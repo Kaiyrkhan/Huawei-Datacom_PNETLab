@@ -53,10 +53,19 @@ commit
 ```
 
 ```shell
-system-view
-sysname EdgeR1
+Username: super
+Password: super
+Warning: The password is already expired.
+The password needs to be changed. Change now? [Y/N]: Y
+Please enter old password: super
+Please enter new password: Huawei@123
+Please confirm new password: Huawei@123
+The password has been changed successfully.
+<Huawei>
 
-commit
+<Huawei> system-view
+[Huawei] sysname EdgeR1
+[EdgeR1]
 ```
 
 ## Step 2 – Configure VLAN (Create VLANs and Access/Trunk Ports)
@@ -483,14 +492,16 @@ display ospf peer brief
 **EdgeR1 Router**
 
 ```shell
-interface g0/0/0
- ip address 10.1.1.101 30
- quit
+Username: super
+Password: Huawei@123
+```
+
+```shell
 interface g0/0/2
- ip address 172.16.128.1 24
+ ip address dhcp-alloc
  quit
-interface g0/0/1
- ip address 192.168.137.254 24
+interface g0/0/3
+ ip address 10.1.1.101 30
  quit
 interface Loopback 50
  ip address 50.1.1.1 32
@@ -500,14 +511,8 @@ display ip int brief
 ```
 
 ```shell
-ping 192.168.137.1
- Request time out
-```
-Windows+R ➜ Turn off Windows Defender Firewall  
-![images](images/windows_firewall_on_to_off.png)
-```shell
-ping 192.168.137.1
- Reply from 192.168.137.1: bytes=56 Sequence=2 ttl=128 time=10 ms
+ping 10.0.137.1
+ Reply from 10.0.137.1: bytes=56 Sequence=2 ttl=64 time=1 ms
 ```
 
 ```shell
@@ -516,7 +521,6 @@ display ip int brief
 ospf 1 router-id 50.1.1.1
  area 0
  network 10.1.1.100 0.0.0.3
- network 172.16.128.0 0.0.0.255
  network 50.1.1.1 0.0.0.0
  quit
  quit
