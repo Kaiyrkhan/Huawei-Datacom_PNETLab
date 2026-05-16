@@ -4,6 +4,15 @@
 ![Topology Enterprise Network Design](images/Topology_PNETLab_EnterpriseNetworkDesign_HQ1_v1_Huawei.png)
 [Download Link for PNETLab Topology File](Topology/Topology_EnterpriseNetworkDesign_HQ1_v1_Huawei.zip)
 
+| Device Name    | Device Type                            |
+| ---------------| ---------------------------------------|
+| ISP            | ISP (Internet Service Provider) Router |
+| EdgeR1         | Edge Router                            |
+| С1             | Core Layer Switche                     |
+| D1, D2, SRV-D1 | Aggregation Layer Switche              |
+| A1, A2         | Access Layer Switche                   |
+| H1, H2, H3, H4 | End Device                             |
+
 ## Scenario
 1) Configure VLAN (Create VLANs and Access Port, Trunk Port)  
    LACP Link Aggregation. Eth-Trunk  
