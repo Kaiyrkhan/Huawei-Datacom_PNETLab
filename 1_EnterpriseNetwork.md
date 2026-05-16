@@ -686,11 +686,8 @@ H3> ping 8.8.8.8
 H4> ping 8.8.8.8
  From 8.8.8.8: bytes=32 seq=3 ttl=105 time=156 ms
 ```
-```shell
-H1> ping google.com
-```
 
-NAT Table
+View NAT Sessions
 ```shell
 [EdgeR1] display nat session all verbose
 ```
