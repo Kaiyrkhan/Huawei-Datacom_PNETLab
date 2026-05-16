@@ -270,6 +270,7 @@ display int brief
 ```
 
 ```shell
+# Verify Configuration
 display eth-trunk 1
 ```
 
