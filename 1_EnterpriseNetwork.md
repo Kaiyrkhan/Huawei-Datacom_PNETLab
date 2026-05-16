@@ -4,7 +4,7 @@
 ![Topology Enterprise Network Design](images/Topology_PNETLab_EnterpriseNetworkDesign_HQ1_v1_Huawei.png)
 [Download Link for PNETLab Topology File](Topology/Topology_EnterpriseNetworkDesign_HQ1_v1_Huawei.zip)
 
-| Device Name    | Device Type                            |
+| Hostname       | Device Role                            |
 | ---------------| ---------------------------------------|
 | ISP            | ISP (Internet Service Provider) Router |
 | EdgeR1         | Edge Router                            |
