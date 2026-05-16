@@ -314,7 +314,7 @@ interface vlanif 50
 commit
 
 display ip int brief
-display vrrp brief
+display vrrp
 ```
 
 **D2 Switch**
@@ -339,7 +339,7 @@ interface vlanif 50
 commit
 
 display ip int brief
-display vrrp brief
+display vrrp
 ```
 
 ## Step 6 – Configure Single-Area OSPF
