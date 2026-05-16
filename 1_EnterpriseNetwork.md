@@ -59,7 +59,7 @@ commit
 ```
 
 ```shell
-# Edge Router
+# Edge Router (EdgeR1)
 
 Username: super
 Password: super
