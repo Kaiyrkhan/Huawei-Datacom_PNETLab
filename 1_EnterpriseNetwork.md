@@ -553,7 +553,7 @@ ip pool VLAN111
 ip pool VLAN112
  network 172.16.112.0 mask 24
  gateway-list 172.16.112.254
- dns-list 172.16.128.53
+ dns-list 8.8.8.8
  excluded-ip-address 172.16.112.1 172.16.112.10
  excluded-ip-address 172.16.112.251 172.16.112.253
  lease day 5
