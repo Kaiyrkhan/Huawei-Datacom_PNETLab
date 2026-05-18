@@ -62,7 +62,7 @@ INTERFACESv6=""
 ```shell
 $ sudo nano /etc/dhcp/dhcpd.conf
 
-option domain-name "edu.local";
+option domain-name "lab.local";
 option domain-name-servers 8.8.8.8;
 default-lease-time 600;
 max-lease-time 7200;
