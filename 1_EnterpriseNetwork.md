@@ -106,6 +106,7 @@ interface g1/0/4
 
 commit
 
+display vlan
 display port vlan
 ```
 
@@ -124,6 +125,7 @@ interface g1/0/2
 
 commit
 
+display vlan
 display port vlan
 ```
 
@@ -153,6 +155,7 @@ interface g1/0/3
 
 commit
 
+display vlan
 display port vlan
 ```
 
@@ -161,6 +164,7 @@ display port vlan
 ```shell
 # Create VLANs
 vlan 10
+ quit
 
 commit
 
@@ -185,10 +189,9 @@ interface g1/0/4
  port default vlan 10
  quit
 
-...
-
 commit
 
+display vlan
 display port vlan
 ```
 
