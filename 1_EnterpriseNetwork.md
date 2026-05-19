@@ -757,11 +757,14 @@ display nat outbound
 ```
 
 ```shell
-H1> ping 8.8.8.8
-H2> ping 8.8.8.8
-H3> ping 8.8.8.8
-H4> ping 8.8.8.8
- From 8.8.8.8: bytes=32 seq=3 ttl=105 time=156 ms
+student@h1:~$ ping -c4 8.8.8.8
+student@h2:~$ ping -c4 8.8.8.8
+student@h3:~$ ping -c4 8.8.8.8
+student@h4:~$ ping -c4 8.8.8.8
+ 64 bytes from 8.8.8.8: icmp_seq=1 ttl=101 time=82 ms
+
+student@dhcp:~$ ping -c2 8.8.8.8
+ 64 bytes from 8.8.8.8: icmp_seq=1 ttl=101 time=78 ms
 ```
 
 View NAT Sessions
