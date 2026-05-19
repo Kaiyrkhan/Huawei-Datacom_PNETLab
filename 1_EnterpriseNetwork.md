@@ -395,10 +395,10 @@ display ip int brief
 ospf 1 router-id 50.7.7.7
  area 0
  network 10.1.1.104 0.0.0.3
+ network 50.7.7.7 0.0.0.0
+ network 10.1.50.0 0.0.0.255
  network 172.16.111.0 0.0.0.255
  network 172.16.112.0 0.0.0.255
- network 10.1.50.0 0.0.0.255
- network 50.7.7.7 0.0.0.0
  quit
  quit
 
@@ -432,10 +432,10 @@ display ip int brief
 ospf 1 router-id 50.8.8.8
  area 0
  network 10.1.1.108 0.0.0.3
+ network 50.8.8.8 0.0.0.0
+ network 10.1.50.0 0.0.0.255
  network 172.16.111.0 0.0.0.255
  network 172.16.112.0 0.0.0.255
- network 10.1.50.0 0.0.0.255
- network 50.8.8.8 0.0.0.0
  quit
  quit
 
@@ -515,8 +515,8 @@ display ip int brief
 ospf 1 router-id 50.5.5.5
  area 0
  network 10.1.1.112 0.0.0.3
- network 10.10.10.0 0.0.0.255
  network 50.5.5.5 0.0.0.0
+ network 10.10.10.0 0.0.0.255
  quit
  quit
 
