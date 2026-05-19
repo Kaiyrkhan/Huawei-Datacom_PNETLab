@@ -84,6 +84,9 @@ log-facility local7;
 
 subnet 10.10.10.0 netmask 255.255.255.0 {
 }
+
+CTRL+O, ENTER, CTRL+X
+CTRL+L
 ```
 
 ```shell
@@ -110,6 +113,9 @@ subnet 172.16.112.0 netmask 255.255.255.0 {
     range 172.16.112.11 172.16.112.250;
     option routers 172.16.112.254;
     }
+
+CTRL+O, ENTER, CTRL+X
+CTRL+L
 ```
 
 ```shell
