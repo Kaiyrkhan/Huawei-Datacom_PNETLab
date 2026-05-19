@@ -140,7 +140,7 @@ $ cat /var/lib/dhcp/dhcpd.leases
 
 ```
 
-Link: [Configure DHCP Relay Agent (for PNETLab Environment)](https://github.com/Kaiyrkhan/Huawei-Datacom_PNETLab/blob/main/1_EnterpriseNetwork.md#step-8--configure-dhcp-relay-agent-for-pnetlab-environment)  
+Link: [Configure DHCP Relay Agent (for PNETLab Environment)](1_EnterpriseNetwork.md#step-8--configure-dhcp-relay-agent-for-pnetlab-environment)  
 
 ### Нәтижені тексеру
 
