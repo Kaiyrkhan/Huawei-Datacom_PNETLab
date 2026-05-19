@@ -374,6 +374,7 @@ display vrrp
 
 ```shell
 interface g1/0/1
+ undo portswitch
  ip address 10.1.1.106 30
  quit
 ```
@@ -406,6 +407,7 @@ display cu | begin ospf
 
 ```shell
 interface g1/0/1
+ undo portswitch
  ip address 10.1.1.110 30
  quit
 ```
@@ -438,15 +440,19 @@ display ospf peer brief
 
 ```shell
 interface g1/0/1
+ undo portswitch
  ip address 10.1.1.102 30
  quit
 interface g1/0/2
+ undo portswitch
  ip address 10.1.1.105 30
  quit
 interface g1/0/3
+ undo portswitch
  ip address 10.1.1.109 30
  quit
 interface g1/0/4
+ undo portswitch
  ip address 10.1.1.113 30
  quit
 interface Loopback 50
@@ -474,6 +480,7 @@ display ospf peer brief
 
 ```shell
 interface g1/0/1
+ undo portswitch
  ip address 10.1.1.114 30
  quit
 
