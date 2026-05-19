@@ -41,12 +41,14 @@ $ sudo systemctl restart networking
 $ ip address
 $ ip route
 $ cat /etc/resolv.conf
+```
 
+### DHCP пакетін (package) орнату
+```shell
 $ ping 8.8.8.8
 $ ping google.com
 ```
 
-### DHCP пакетін (package) орнату
 ```shell
 $ sudo apt update
 $ sudo apt install -y isc-dhcp-server
