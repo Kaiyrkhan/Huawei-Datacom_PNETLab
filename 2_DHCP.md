@@ -66,6 +66,9 @@ $ ip address
 $ sudo nano /etc/default/isc-dhcp-server
 INTERFACESv4="ens3"
 INTERFACESv6=""
+
+CTRL+O, ENTER, CTRL+X
+CTRL+L
 ```
 
 ```shell
