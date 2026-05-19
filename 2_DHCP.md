@@ -33,6 +33,9 @@ $ sudo nano /etc/network/interfaces
     gateway 10.10.10.1
     dns-nameservers 8.8.8.8
 
+CTRL+O, ENTER, CTRL+X
+CTRL+L
+
 $ sudo systemctl restart networking
 
 $ ip address
