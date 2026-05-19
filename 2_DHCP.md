@@ -131,9 +131,22 @@ $ sudo dhcpd -t
 $ cat /var/lib/dhcp/dhcpd.leases
 ```
 
+### Configure DHCP Relay Agent
+
+```shell
+# D1 and D2 Switch
+
+...
+
+```
+
 ### Нәтижені тексеру
+
 ```shell
 Debain
+student@h1:~$ ip address
+student@h1:~$ sudo dhclient -v ens3
+
 student@h1:~$ ip address
 student@h1:~$ ip route
 student@h1:~$ cat /etc/resolv.conf
