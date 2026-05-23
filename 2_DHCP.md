@@ -1,11 +1,17 @@
 # Configure DHCP Server on Linux
 
+1) Configure DHCP Server on Debian 12/13;
+2) Configure DHCP Server on Ubuntu 24.04.4 LTS;
+3) Configure DHCP Server on Rocky 9.7;
+4) Configure DHCP Server on openEuler 24.03 LTS SP3;
+5) Configure DHCP Server on Oracle 7.9.
+
 ### Network Topology
 ![Topology Enterprise Network Design](images/Topology_EnterpriseNetworkDesign_Huawei_HQ_v1.png)  
 
 ## Configure DHCP Server on Debian
 
-### Scenario
+#### Scenario
 1) Configure Device Hostname;
 2) Configure Network interface;
 3) install DHCP Package;
@@ -13,7 +19,7 @@
 5) Configure DHCP Relay Agent;
 6) Verify IP Address Assignment.
 
-### Configure Device Hostname
+#### Step 1 - Configure Device Hostname
 
 ```shell
 $ sudo hostnamectl set-hostname dhcp
@@ -27,7 +33,7 @@ CTRL+L
 $ bash
 ```
 
-### Configure Network interface
+#### Step 2 - Configure Network interface
 
 ```shell
 $ ip address
@@ -53,7 +59,7 @@ $ ip route
 $ cat /etc/resolv.conf
 ```
 
-### install DHCP Package
+#### Step 3 - install DHCP Package
 
 ```shell
 $ ping 8.8.8.8
@@ -69,7 +75,7 @@ $ sudo dpkg -l isc-dhcp-server
 $ sudo dpkg -s isc-dhcp-server
 ```
 
-### Configure DHCP Server
+#### Step 4 - Configure DHCP Server
 
 ```shell
 $ ip address
@@ -143,7 +149,7 @@ $ sudo dhcpd -t
 $ cat /var/lib/dhcp/dhcpd.leases
 ```
 
-### Configure DHCP Relay Agent
+#### Step 5 - Configure DHCP Relay Agent
 
 ```shell
 # D1 and D2 Switch
@@ -154,7 +160,7 @@ $ cat /var/lib/dhcp/dhcpd.leases
 
 Link: [Configure DHCP Relay Agent (for PNETLab Environment)](1_EnterpriseNetwork.md#step-8--configure-dhcp-relay-agent-for-pnetlab-environment)  
 
-### Verify IP Address Assignment
+#### Step 6 - Verify IP Address Assignment
 
 ```shell
 # H1 (Debain)
@@ -198,4 +204,21 @@ student@h4:~$ sudo systemctl restart NetworkManager
 ```shell
 # DHCP Server
 student@dhcp:~$ cat /var/lib/dhcp/dhcpd.leases
+```
+
+## Configure DHCP Server on Ubuntu 24.04.4 LTS
+
+#### Step 1 - Configure Device Hostname
+
+```shell
+$ sudo hostnamectl set-hostname dhcp
+
+немесе
+
+$ sudo nano /etc/hostname
+dhcp
+CTRL+O, ENTER, CTRL+X
+CTRL+L
+
+$ bash
 ```
