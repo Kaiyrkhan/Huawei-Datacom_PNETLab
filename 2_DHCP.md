@@ -8,7 +8,7 @@
 ### Scenario
 1) Configure Device Hostname;
 2) Configure Network interface;
-3) install the DHCP Package;
+3) install DHCP Package;
 4) Configure DHCP Server;
 5) Configure DHCP Relay Agent;
 6) Verify Configuration.
