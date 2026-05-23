@@ -6,23 +6,29 @@
 ## Configure DHCP Server on Debian
 
 ### Scenario
-1) DHCP пакетін (package) орнату;
-2) DHCP серверді конфигурациялау;
-3) Нәтижені тексеру.
+1) Configure Device Hostname;
+2) Configure Network interface;
+3) install the DHCP Package;
+4) Configure DHCP Server;
+5) Configure DHCP Relay Agent;
+6) Verify Configuration.
 
-### Құрылғының атауын (Device Hostname) өзгерту
+### Configure Device Hostname
+
 ```shell
 $ sudo hostnamectl set-hostname dhcp
 
 $ sudo nano /etc/hosts
 127.0.1.1  dhcp
+
 CTRL+O, ENTER, CTRL+X
 CTRL+L
 
 $ bash
 ```
 
-### Желілік интерфейсті конфигурациялау
+### Configure Network interface
+
 ```shell
 $ ip address
 $ sudo nano /etc/network/interfaces
@@ -35,15 +41,20 @@ $ sudo nano /etc/network/interfaces
 
 CTRL+O, ENTER, CTRL+X
 CTRL+L
+```
 
+```shell
 $ sudo systemctl restart networking
+```
 
+```shell
 $ ip address
 $ ip route
 $ cat /etc/resolv.conf
 ```
 
-### DHCP пакетін (package) орнату
+### install DHCP Package
+
 ```shell
 $ ping 8.8.8.8
 $ ping google.com
@@ -58,7 +69,8 @@ $ sudo dpkg -l isc-dhcp-server
 $ sudo dpkg -s isc-dhcp-server
 ```
 
-### DHCP серверді конфигурациялау
+### Configure DHCP Server
+
 ```shell
 $ ip address
 ```
@@ -124,14 +136,14 @@ $ cat /etc/dhcp/dhcpd.conf | sed '/^#/d;/^$/d'
 
 ```shell
 $ sudo systemctl restart isc-dhcp-server
-$ sudo dhcpd -t
 ```
 
 ```shell
+$ sudo dhcpd -t
 $ cat /var/lib/dhcp/dhcpd.leases
 ```
 
-### DHCP Relay Agent құрылғыны конфигурациялау
+### Configure DHCP Relay Agent
 
 ```shell
 # D1 and D2 Switch
@@ -142,7 +154,7 @@ $ cat /var/lib/dhcp/dhcpd.leases
 
 Link: [Configure DHCP Relay Agent (for PNETLab Environment)](1_EnterpriseNetwork.md#step-8--configure-dhcp-relay-agent-for-pnetlab-environment)  
 
-### Нәтижені тексеру
+### Verify IP Address Assignment
 
 ```shell
 H1 - Debain
