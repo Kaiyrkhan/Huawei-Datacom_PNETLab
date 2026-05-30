@@ -35,7 +35,7 @@ commit
 ```
 
 ```shell
-# Aggregation Layer Switches (D1, D2, SRV-D1)
+# Aggregation Layer Switches (D1, D2, D3)
 
 system-view
 sysname D1
