@@ -9,7 +9,7 @@
 | ISP            | ISP (Internet Service Provider) Router |
 | EdgeR1         | Edge Router                            |
 | С1             | Core Layer Switch                      |
-| D1, D2, SRV-D1 | Aggregation Layer Switch               |
+| D1, D2, D3     | Aggregation Layer Switch               |
 | A1, A2         | Access Layer Switch                    |
 | H1, H2, H3, H4 | End Device                             |
 
