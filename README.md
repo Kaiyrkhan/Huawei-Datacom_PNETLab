@@ -2,17 +2,17 @@
 
   [1) Huawei-Based Enterprise Network Design and Implementation](1_EnterpriseNetwork.md)  
   [2) DHCP](2_DHCP.md)  
-  3) NTP
-  4) DNS
-  5) Web (Nginx, Apache)
-  6) FTP
-  7) TFTP
-  8) RADIUS
-  9) HWTACACS
-  10) LDAP
-  11) Squid
-  12) Samba
-  13) NFS
-  14) Monitoring System (LibreNMS, Icinga, Zabbix)
-  15) Centralized Logging System (syslog-ng/rsyslog + Graylog)
-  16) Network Automation (Ansible, Python)
+  [3) NTP]()  
+  [4) DNS]()  
+  [5) Web (Nginx, Apache)]()  
+  [6) FTP]()  
+  [7) TFTP]()  
+  [8) RADIUS]()  
+  [9) HWTACACS]()  
+  [10) LDAP]()  
+  [11) Squid]()  
+  [12) Samba]()  
+  [13) NFS]()  
+  [14) Monitoring System (LibreNMS, Icinga, Zabbix)]()  
+  [15) Centralized Logging System (syslog-ng/rsyslog + Graylog)]()  
+  [16) Network Automation (Ansible, Python)]()  
