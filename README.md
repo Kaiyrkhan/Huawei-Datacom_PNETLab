@@ -1,4 +1,4 @@
-# Huawei-Based Enterprise Network Design and Implementation
+# # Lab Guide for PNETLab Environment
 
   [1) Huawei-Based Enterprise Network Design and Implementation](1_EnterpriseNetwork.md)  
   [2) DHCP](2_DHCP.md)  
