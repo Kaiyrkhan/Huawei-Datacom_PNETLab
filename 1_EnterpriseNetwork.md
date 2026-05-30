@@ -22,15 +22,6 @@
 4) DHCP
 5) NAT (Easy IP)
 6) Remote Access (SSH, Telnet)
-7) NTP
-8) DNS
-9) HTTP
-10) FTP
-11) TFTP
-12) HWTACACS
-13) RADIUS
-14) LDAP
-15) ...
 
 ## Step 1 – Configure Device Hostname
 
