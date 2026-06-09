@@ -486,7 +486,7 @@ commit
 display ospf peer brief
 ```
 
-**D3**
+**D3 Switch**
 
 ```shell
 interface g1/0/1
