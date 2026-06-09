@@ -151,7 +151,7 @@ display vlan
 display port vlan
 ```
 
-**SRV-D1 Switch**
+**D3 Switch**
 
 ```shell
 # Create VLANs
@@ -486,7 +486,7 @@ commit
 display ospf peer brief
 ```
 
-**SRV-D1**
+**D3**
 
 ```shell
 interface g1/0/1
