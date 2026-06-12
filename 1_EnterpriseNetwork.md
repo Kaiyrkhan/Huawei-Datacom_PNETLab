@@ -371,6 +371,8 @@ display vrrp
 **D1 Switch**
 
 ```shell
+# Configure Routed Interface
+
 interface g1/0/1
  undo portswitch
  ip address 10.1.1.106 30
@@ -378,6 +380,8 @@ interface g1/0/1
 ```
 
 ```shell
+# Configure Loopback Interface
+
 interface Loopback 50            // Create Loopback interface
  ip address 50.7.7.7 32
  quit
