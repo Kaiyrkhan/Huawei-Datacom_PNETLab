@@ -1,4 +1,4 @@
-# Configure DHCP Server on Linux
+# Configure ISC DHCP Server on Linux
 
   1) Configure DHCP Server on Debian 12/13;
   2) Configure DHCP Server on Ubuntu 24.04.4 LTS;
