@@ -72,12 +72,17 @@ $ sudo apt update
 $ sudo apt install -y isc-dhcp-server
 ```
 ```shell
+# Verify DHCP Package Installation
 $ sudo dpkg -l isc-dhcp-server
+
+# View DHCP Package Details
 $ sudo dpkg -s isc-dhcp-server
 ```
 
 ```shell
+# Verify DHCP Listening Port
 $ ss -lunp | grep 67
+$ ss -ulpn | grep dhcpd
 ```
 
 #### Step 4 - Configure DHCP Server
@@ -86,6 +91,8 @@ $ ss -lunp | grep 67
 $ ip address
 ```
 ```shell
+# Configure DHCP Listening Interface
+
 $ sudo nano /etc/default/isc-dhcp-server
 INTERFACESv4="ens3"
 INTERFACESv6=""
@@ -175,7 +182,7 @@ $ less /var/lib/dhcp/dhcpd.leases
 ```
 
 ```shell
-# Verify DHCP Logging
+# Monitor DHCP Service Logs
 $ sudo journalctl -u isc-dhcp-server
 $ sudo journalctl -f -u isc-dhcp-server
 ```
@@ -201,7 +208,6 @@ DHCP Logging Methods for ISC DHCP Server:
 **Step 6.1 - systemd-journald (default DHCP Logging)**
 
 ```shell
-# Verify DHCP Logging
 $ sudo journalctl -u isc-dhcp-server
 $ sudo journalctl -f -u isc-dhcp-server
 ```
