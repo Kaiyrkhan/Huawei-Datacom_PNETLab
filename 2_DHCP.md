@@ -164,7 +164,9 @@ $ less /var/lib/dhcp/dhcpd.leases
 
 Link: [Configure DHCP Relay Agent (for PNETLab Environment)](1_EnterpriseNetwork.md#step-8--configure-dhcp-relay-agent-for-pnetlab-environment)  
 
-#### Step 6 - DHCP Logging Methods for ISC DHCP Server
+#### Step 6 - Configure DHCP Logging
+
+**DHCP Logging Methods for ISC DHCP Server:**  
  1) systemd-journald  
  2) rsyslog  
  3) syslog-ng  
