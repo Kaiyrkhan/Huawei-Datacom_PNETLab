@@ -81,8 +81,11 @@ $ sudo dpkg -s isc-dhcp-server
 
 ```shell
 # Verify DHCP Listening Port
-$ ss -lunp | grep 67
-$ ss -ulpn | grep dhcpd
+$ ss -tulpn | grep 67
+Netid  State    Local Address:Port    Peer Address:Port
+udp    -        0.0.0.0:67            0.0.0.0:*
+
+$ ss -tulpn | grep dhcpd
 ```
 
 #### Step 4 - Configure DHCP Server
