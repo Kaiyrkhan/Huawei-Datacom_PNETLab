@@ -76,6 +76,10 @@ $ sudo dpkg -l isc-dhcp-server
 $ sudo dpkg -s isc-dhcp-server
 ```
 
+```shell
+$ ss -lunp | grep 67
+```
+
 #### Step 4 - Configure DHCP Server
 
 ```shell
@@ -93,8 +97,6 @@ CTRL+L
 ```shell
 $ sudo nano /etc/dhcp/dhcpd.conf
 
-option domain-name "lab.local";
-option domain-name-servers 8.8.8.8;
 default-lease-time 600;
 max-lease-time 7200;
 ddns-update-style none;
@@ -102,6 +104,7 @@ authoritative;
 log-facility local7;
 
 subnet 10.10.10.0 netmask 255.255.255.0 {
+  not authoritative;
 }
 
 CTRL+O, ENTER, CTRL+X
@@ -109,9 +112,16 @@ CTRL+L
 ```
 
 ```shell
+# Check Configuration Syntax
+$ sudo dhcpd -t
+```
+
+```shell
+# Start DHCP Service
 $ sudo systemctl start isc-dhcp-server
 $ sudo systemctl status isc-dhcp-server
 
+# Enable DHCP Service
 $ sudo systemctl enable isc-dhcp-server
 $ sudo systemctl is-enabled isc-dhcp-server
 ```
@@ -122,6 +132,10 @@ $ sudo nano /etc/dhcp/dhcpd.conf
 subnet 172.16.111.0 netmask 255.255.255.0 {
   range 172.16.111.11 172.16.111.250;
   option routers 172.16.111.254;
+  option subnet-mask 255.255.255.0;
+  option broadcast-address 172.16.111.255;
+  option domain-name "lab.local";
+  option domain-name-servers 8.8.8.8;
     host h1 {
       hardware ethernet 50:91:6a:00:0d:00;
       fixed-address 172.16.111.8;
@@ -131,6 +145,10 @@ subnet 172.16.111.0 netmask 255.255.255.0 {
 subnet 172.16.112.0 netmask 255.255.255.0 {
   range 172.16.112.11 172.16.112.250;
   option routers 172.16.112.254;
+  option subnet-mask 255.255.255.0;
+  option broadcast-address 172.16.111.255;
+  option domain-name "lab.local";
+  option domain-name-servers 8.8.8.8;
 }
 
 CTRL+O, ENTER, CTRL+X
@@ -142,16 +160,24 @@ $ cat /etc/dhcp/dhcpd.conf | sed '/^#/d;/^$/d'
 ```
 
 ```shell
-$ sudo systemctl restart isc-dhcp-server
-```
-
-```shell
+# Check Configuration Syntax
 $ sudo dhcpd -t
 ```
 
 ```shell
-# Lease Database
+# Restart DHCP Service
+$ sudo systemctl restart isc-dhcp-server
+```
+
+```shell
+# Verify DHCP Lease Database
 $ less /var/lib/dhcp/dhcpd.leases
+```
+
+```shell
+# Verify DHCP Logging
+$ sudo journalctl -u isc-dhcp-server
+$ sudo journalctl -f -u isc-dhcp-server
 ```
 
 #### Step 5 - Configure DHCP Relay Agent
@@ -188,8 +214,17 @@ $ sudo apt install rsyslog
 ```
 
 ```shell
+# Configure DHCP Log Facility
+$ sudo nano /etc/dhcp/dhcpd.conf
+log-facility local7;
+
+CTRL+O, ENTER, CTRL+X
+CTRL+L
+```
+
+```shell
 # Configure DHCP Logging
-$ sudo nano /etc/rsyslog.conf
+$ sudo nano /etc/rsyslog.conf              // $ sudo nano /etc/rsyslog.d/dhcpd.conf
 local7.*  /var/log/dhcpd.log
 
 CTRL+O, ENTER, CTRL+X
@@ -286,7 +321,7 @@ $ sudo systemctl status isc-dhcp-server
 $ sudo systemctl status syslog-ng
 ```
 
-#### Step 8 - Verify IP Address Assignment
+#### Step 8 - Verify DHCP Address Assignment
 
 ```shell
 # H1 (Debain)
