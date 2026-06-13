@@ -8,7 +8,7 @@
 ### Network Topology
 ![Topology Enterprise Network Design](images/Topology_EnterpriseNetworkDesign_Huawei_v1.png)  
 
-## Configure ISC DHCP Server on Debian
+## Configure Kea DHCP Server on Debian
 
 ```shell
 ```
