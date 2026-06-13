@@ -67,6 +67,7 @@ $ ping google.com
 ```
 
 ```shell
+# install DHCP Package
 $ sudo apt update
 $ sudo apt install -y isc-dhcp-server
 ```
