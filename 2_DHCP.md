@@ -153,13 +153,6 @@ $ sudo dhcpd -t
 $ less /var/lib/dhcp/dhcpd.leases
 ```
 
-```shell
-# systemd-journald (default DHCP logging)
-
-$ sudo journalctl -u isc-dhcp-server
-$ sudo journalctl -f -u isc-dhcp-server
-```
-
 #### Step 5 - Configure DHCP Relay Agent
 
 ```shell
@@ -171,12 +164,19 @@ $ sudo journalctl -f -u isc-dhcp-server
 
 Link: [Configure DHCP Relay Agent (for PNETLab Environment)](1_EnterpriseNetwork.md#step-8--configure-dhcp-relay-agent-for-pnetlab-environment)  
 
-#### Step 6 - Configure DHCP Logging using rsyslog
+#### Step 6 - DHCP Logging Methods for ISC DHCP Server
+ 1) systemd-journald  
+ 2) rsyslog  
+ 3) syslog-ng  
 
-> **DHCP Logging Methods for ISC DHCP Server:**  
-> 1) systemd-journald  
-> 2) rsyslog  
-> 3) syslog-ng  
+```shell
+# systemd-journald (default DHCP logging)
+
+$ sudo journalctl -u isc-dhcp-server
+$ sudo journalctl -f -u isc-dhcp-server
+```
+
+#### Configure DHCP Logging using rsyslog
 
 ```shell
 $ sudo apt install rsyslog
