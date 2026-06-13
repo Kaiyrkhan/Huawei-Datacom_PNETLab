@@ -12,12 +12,13 @@
 ## Configure DHCP Server on Debian
 
 #### Scenario
-  1) Configure Device Hostname;
-  2) Configure Network interface;
-  3) install DHCP Package;
-  4) Configure DHCP Server;
-  5) Configure DHCP Relay Agent;
-  6) Verify IP Address Assignment.
+  1) Configure Device Hostname
+  2) Configure Network interface
+  3) install DHCP Package
+  4) Configure DHCP Server
+  5) Configure DHCP Relay Agent
+  6) Configure DHCP Logging
+  7) Verify IP Address Assignment
 
 #### Step 1 - Configure Device Hostname
 
@@ -166,19 +167,19 @@ Link: [Configure DHCP Relay Agent (for PNETLab Environment)](1_EnterpriseNetwork
 
 #### Step 6 - Configure DHCP Logging
 
-**DHCP Logging Methods for ISC DHCP Server:**  
+DHCP Logging Methods for ISC DHCP Server:  
  1) systemd-journald  
  2) rsyslog  
  3) syslog-ng  
 
-```shell
-# systemd-journald (default DHCP logging)
+**systemd-journald (default DHCP Logging)**
 
+```shell
 $ sudo journalctl -u isc-dhcp-server
 $ sudo journalctl -f -u isc-dhcp-server
 ```
 
-#### Configure DHCP Logging using rsyslog
+**Configure DHCP Logging using rsyslog**
 
 ```shell
 $ sudo apt install rsyslog
@@ -207,7 +208,7 @@ $ tail /var/log/dhcpd.log
 $ tail -f /var/log/dhcpd.log
 ```
 
-#### Step 7 - Configure DHCP Logging using syslog-ng
+**Configure DHCP Logging using syslog-ng**
 
 ```shell
 ```
