@@ -146,11 +146,15 @@ $ sudo systemctl restart isc-dhcp-server
 
 ```shell
 $ sudo dhcpd -t
+```
 
+```shell
 # Lease Database
-$ cat /var/lib/dhcp/dhcpd.leases
 $ less /var/lib/dhcp/dhcpd.leases
+```
 
+```shell
+# Systemd-journald
 $ sudo journalctl -u isc-dhcp-server
 ```
 
@@ -165,7 +169,11 @@ $ sudo journalctl -u isc-dhcp-server
 
 Link: [Configure DHCP Relay Agent (for PNETLab Environment)](1_EnterpriseNetwork.md#step-8--configure-dhcp-relay-agent-for-pnetlab-environment)  
 
-#### Step 6 - Configure DHCP Log File
+#### Step 6 - Configure DHCP Logging with rsyslog
+
+> systemd-journald  
+> rsyslog  
+> syslog-ng  
 
 ```shell
 $ sudo apt install rsyslog
