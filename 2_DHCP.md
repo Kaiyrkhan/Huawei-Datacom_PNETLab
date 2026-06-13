@@ -146,7 +146,12 @@ $ sudo systemctl restart isc-dhcp-server
 
 ```shell
 $ sudo dhcpd -t
+
+# Lease Database
 $ cat /var/lib/dhcp/dhcpd.leases
+$ less /var/lib/dhcp/dhcpd.leases
+
+$ sudo journalctl -u isc-dhcp-server
 ```
 
 #### Step 5 - Configure DHCP Relay Agent
@@ -160,7 +165,36 @@ $ cat /var/lib/dhcp/dhcpd.leases
 
 Link: [Configure DHCP Relay Agent (for PNETLab Environment)](1_EnterpriseNetwork.md#step-8--configure-dhcp-relay-agent-for-pnetlab-environment)  
 
-#### Step 6 - Verify IP Address Assignment
+#### Step 6 - Configure DHCP Log File
+
+```shell
+$ sudo apt install rsyslog
+```
+
+```shell
+$ sudo nano /etc/rsyslog.conf
+local7.*  /var/log/dhcpd.log
+
+CTRL+O, ENTER, CTRL+X
+CTRL+L
+```
+
+```shell
+$ sudo touch /var/log/dhcpd.log
+$ ls -l /var/log/
+```
+
+```shell
+$ sudo systemctl restart rsyslog
+$ sudo systemctl restart isc-dhcp-server
+```
+
+```shell
+$ tail /var/log/dhcpd.log
+$ tail -f /var/log/dhcpd.log
+```
+
+#### Step 7 - Verify IP Address Assignment
 
 ```shell
 # H1 (Debain)
