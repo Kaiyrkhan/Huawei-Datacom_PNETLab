@@ -175,6 +175,7 @@ DHCP Logging Methods for ISC DHCP Server:
 **Step 6.1 - systemd-journald (default DHCP Logging)**
 
 ```shell
+# Verify DHCP Logging
 $ sudo journalctl -u isc-dhcp-server
 $ sudo journalctl -f -u isc-dhcp-server
 ```
@@ -182,10 +183,12 @@ $ sudo journalctl -f -u isc-dhcp-server
 **Step 6.2 - Configure DHCP Logging using rsyslog**
 
 ```shell
+# install rsyslog
 $ sudo apt install rsyslog
 ```
 
 ```shell
+# Configure DHCP Logging
 $ sudo nano /etc/rsyslog.conf
 local7.*  /var/log/dhcpd.log
 
@@ -194,16 +197,19 @@ CTRL+L
 ```
 
 ```shell
+# Create the DHCP Log File
 $ sudo touch /var/log/dhcpd.log
 $ ls -l /var/log/
 ```
 
 ```shell
+# Restart Services
 $ sudo systemctl restart rsyslog
 $ sudo systemctl restart isc-dhcp-server
 ```
 
 ```shell
+# Verify DHCP Logging
 $ tail /var/log/dhcpd.log
 $ tail -f /var/log/dhcpd.log
 ```
