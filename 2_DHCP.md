@@ -255,6 +255,28 @@ $ tail /var/log/dhcpd.log
 $ tail -f /var/log/dhcpd.log
 ```
 
+```shell
+# Configure DHCP Log Rotation
+$ sudo nano /etc/logrotate.d/dhcpd
+
+/var/log/dhcpd.log {
+    weekly
+    rotate 12
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 0640 root adm
+}
+
+# Verify Log Rotation Operation
+$ sudo logrotate -d /etc/logrotate.d/dhcpd
+$ sudo logrotate -f /etc/logrotate.d/dhcpd
+Result:
+/var/log/dhcpd.log
+/var/log/dhcpd.log.1.gz
+```
+
 **Step 6.3 - Configure DHCP Logging using syslog-ng**
 
 ```shell
