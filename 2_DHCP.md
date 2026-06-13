@@ -172,14 +172,14 @@ DHCP Logging Methods for ISC DHCP Server:
  2) rsyslog  
  3) syslog-ng  
 
-**systemd-journald (default DHCP Logging)**
+**Step 6.1 - systemd-journald (default DHCP Logging)**
 
 ```shell
 $ sudo journalctl -u isc-dhcp-server
 $ sudo journalctl -f -u isc-dhcp-server
 ```
 
-**Configure DHCP Logging using rsyslog**
+**Step 6.2 - Configure DHCP Logging using rsyslog**
 
 ```shell
 $ sudo apt install rsyslog
@@ -208,9 +208,76 @@ $ tail /var/log/dhcpd.log
 $ tail -f /var/log/dhcpd.log
 ```
 
-**Configure DHCP Logging using syslog-ng**
+**Step 6.3 - Configure DHCP Logging using syslog-ng**
 
 ```shell
+# install syslog-ng
+$ sudo apt update
+$ sudo apt install syslog-ng
+```
+
+```shell
+# Configure DHCP Log Facility
+$ sudo nano /etc/dhcp/dhcpd.conf
+log-facility local7;
+
+CTRL+O, ENTER, CTRL+X
+CTRL+L
+```
+
+```shell
+# Create a syslog-ng Logging Rule
+$ sudo nano /etc/syslog-ng/conf.d/dhcpd.conf
+
+filter f_dhcpd {
+    facility(local7);
+};
+
+destination d_dhcpd {
+    file("/var/log/dhcpd.log");
+};
+
+log {
+    source(s_src);
+    filter(f_dhcpd);
+    destination(d_dhcpd);
+    flags(final);
+};
+
+CTRL+O, ENTER, CTRL+X
+CTRL+L
+```
+
+```shell
+# Create the DHCP Log File
+$ sudo touch /var/log/dhcpd.log
+
+$ ls -ld /var/log/dhcpd.log
+
+$ sudo chmod 640 /var/log/dhcpd.log
+$ sudo chown root:adm /var/log/dhcpd.log
+```
+
+```shell
+# Check the Configuration Syntax
+$ sudo syslog-ng --syntax-only
+```
+
+```shell
+# Restart Services
+$ sudo systemctl restart syslog-ng
+$ sudo systemctl restart isc-dhcp-server
+```
+
+```shell
+# Verify DHCP Logging
+$ sudo tail /var/log/dhcpd.log
+$ sudo tail -f /var/log/dhcpd.log
+```
+
+```shell
+$ sudo systemctl status isc-dhcp-server
+$ sudo systemctl status syslog-ng
 ```
 
 #### Step 8 - Verify IP Address Assignment
