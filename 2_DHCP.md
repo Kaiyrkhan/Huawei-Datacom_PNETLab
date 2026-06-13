@@ -255,8 +255,11 @@ $ tail /var/log/dhcpd.log
 $ tail -f /var/log/dhcpd.log
 ```
 
+**Configure DHCP Log Rotation**
+
 ```shell
 # Configure DHCP Log Rotation
+
 $ sudo nano /etc/logrotate.d/dhcpd
 
 /var/log/dhcpd.log {
@@ -270,9 +273,11 @@ $ sudo nano /etc/logrotate.d/dhcpd
 }
 
 # Verify Log Rotation Operation
+
 $ sudo logrotate -d /etc/logrotate.d/dhcpd
 $ sudo logrotate -f /etc/logrotate.d/dhcpd
-Result:
+
+# Result:
 /var/log/dhcpd.log
 /var/log/dhcpd.log.1.gz
 ```
