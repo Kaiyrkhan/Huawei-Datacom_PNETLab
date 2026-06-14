@@ -102,6 +102,7 @@ $ ss -tulpn | grep dhcpd
 
 ```shell
 $ ip address
+ens3
 
 # Configure DHCP Listening Interface
 $ sudo nano /etc/default/isc-dhcp-server
