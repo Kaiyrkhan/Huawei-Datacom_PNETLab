@@ -84,8 +84,11 @@ $ ping 8.8.8.8
 $ ping google.com
 ```
 
+> Package атауы: isc-dhcp-server 
+> Daemon/Service атауы: isc-dhcp-server 
+
 ```shell
-# install DHCP Package
+# install ISC DHCP Package
 $ sudo apt update
 $ sudo apt install -y isc-dhcp-server
 ```
@@ -99,6 +102,7 @@ $ sudo dpkg -s isc-dhcp-server
 
 ```shell
 # Verify DHCP Listening Port
+
 $ ss -tulpn | grep 67
 Netid  State    Local Address:Port    Peer Address:Port
 udp    -        0.0.0.0:67            0.0.0.0:*
@@ -146,10 +150,12 @@ $ sudo dhcpd -t
 ```shell
 # Start DHCP Service
 $ sudo systemctl start isc-dhcp-server
+# Verify Service Status
 $ sudo systemctl status isc-dhcp-server
 
 # Enable DHCP Service
 $ sudo systemctl enable isc-dhcp-server
+# Verify Service Startup Status
 $ sudo systemctl is-enabled isc-dhcp-server
 ```
 
@@ -192,7 +198,7 @@ $ sudo dhcpd -t
 ```
 
 ```shell
-# Restart ISC DHCP Service
+# Restart DHCP Service
 $ sudo systemctl restart isc-dhcp-server
 ```
 
