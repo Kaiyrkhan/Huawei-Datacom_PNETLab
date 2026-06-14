@@ -224,6 +224,7 @@ $ sudo systemctl status kea-dhcp4-server
 ```
 
 ```shell
+# Monitor DHCP Service Logs
 $ sudo journalctl -u kea-dhcp4-server
 $ sudo journalctl -f -u kea-dhcp4-server
 ```
@@ -270,16 +271,28 @@ $ sudo nano /etc/kea/kea-dhcp4.conf
 ```
 
 ```shell
-sudo mkdir -p /var/log/kea
-sudo touch /var/log/kea/kea-dhcp4.log
+# Create the DHCP Log File
 
-sudo kea-dhcp4 -t /etc/kea/kea-dhcp4.conf
-sudo systemctl restart isc-kea-dhcp4-server
-sudo tail -f /var/log/kea/kea-dhcp4.log
+$ sudo mkdir -p /var/log/kea
+$ sudo touch /var/log/kea/kea-dhcp4.log
 ```
 
 ```shell
-journalctl -u isc-kea-dhcp4-server -f
+# Check Configuration Syntax
+$ sudo kea-dhcp4 -t /etc/kea/kea-dhcp4.conf
+```
+
+```shell
+# Restart DHCP Service
+$ sudo systemctl restart kea-dhcp4-server
+
+# Verify DHCP Logging
+$ sudo tail -f /var/log/kea/kea-dhcp4.log
+```
+
+```shell
+# Monitor DHCP Service Logs
+$ sudo journalctl -f -u isc-kea-dhcp4-server
 ```
 
 ```shell
