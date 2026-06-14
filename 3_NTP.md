@@ -10,14 +10,55 @@
 
 ## Configure NTP Server using Chrony on Ubuntu
 
-#### Scenario
-  1) install Chrony Package
-  2) Configure Chrony as an NTP Server
-  3) Configure NTP Authentication
-  4) Configure NTP Firewall Rule
-  5) Verify NTP Server Operation
+```shell
+student@ubuntu:~$ lsb_release -a
+Ubuntu 24.04.4 LTS
+student@ubuntu:~$ uname -rs
+Linux 6.8.0-101-generic x86_64 GNU/Linux
+```
 
-#### Step 1 - install Chrony Package
+#### Scenario
+  1) Configure Network interface
+  2) install Chrony Package
+  3) Configure Chrony as an NTP Server
+  4) Configure NTP Authentication
+  5) Configure NTP Firewall Rule
+  6) Verify NTP Server Operation
+
+#### Step 1 - Configure Network interface
+
+```shell
+student@ubuntu:~$ ip address
+```
+
+```shell
+student@ubuntu:~$ sudo nano /etc/netplan/50-cloud-init.yaml
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    ens3:
+      dhcp4: false
+      addresses:
+        - 10.10.10.123/24
+
+CTRL+O, ENTER, CTRL+X
+```
+> **ЕСКЕРТУ:** *YAML файлында бос орындар (indentation) өте маңызды. Әр қатарда 2 бос орын қолдануды ұмытпаңыз! (Tab пернесін қолданбаған дұрыс)*  
+
+```shell
+student@ubuntu:~$ sudo netplan apply
+```
+
+```shell
+student@ubuntu:~$ ip address
+```
+
+```shell
+student@ubuntu:~$ networkctl status
+```
+
+#### Step 2 - install Chrony Package
 
 > Package атауы: **chrony**  
 > Daemon/Service атауы: **chrony** немесе **chronyd**  
