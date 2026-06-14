@@ -77,16 +77,37 @@ $ ping google.com
 ```
 
 ```shell
+$ apt search kea | grep dhcp4
+kea-dhcp4-server/stable,now 2.6.3-1 amd64
+
 # install DHCP Package
 $ sudo apt update
-$ sudo apt install -y isc-dhcp-server
+$ sudo apt install -y kea-dhcp4-server
 ```
 ```shell
 # Verify DHCP Package Installation
-$ sudo dpkg -l isc-dhcp-server
+$ sudo dpkg -l kea-dhcp4-server
 
 # View DHCP Package Details
-$ sudo dpkg -s isc-dhcp-server
+$ sudo dpkg -s kea-dhcp4-server
+```
+
+```shell
+# Status DHCP Service
+
+$ systemctl list-units | grep kea
+kea-dhcp4-server.service
+
+$ systemctl status kea-dhcp4-server
+Active: active (running)
+
+$ systemctl is-enabled kea-dhcp4-server
+enabled
+```
+
+```shell
+$ sudo journalctl -u kea-dhcp4-server
+$ sudo journalctl -f -u kea-dhcp4-server
 ```
 
 ```shell
