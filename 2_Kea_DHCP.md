@@ -35,7 +35,7 @@ Linux 6.12.73+deb13-amd64 x86_64 GNU/Linux
   4) Configure Kea DHCP Server
   5) Configure DHCP Relay Agent
   6) Configure Kea DHCP Logging
-  7) Verify IP Address Assignment
+  7) Verify DHCP Address Assignment
 
 #### Step 1 - Configure Device Hostname
 
