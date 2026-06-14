@@ -16,17 +16,25 @@
 # System Information
 
 student@debian:~$ lsb_release -a
+Distributor ID: Debian
+Description:    Debian GNU/Linux 13 (trixie)
+Release:        13
+Codename:       trixie
+
 student@debian:~$ cat /etc/debian_version
+13.5
+
 student@debian:~$ uname -rs
+Linux 6.12.73+deb13-amd64 x86_64 GNU/Linux
 ```
 
 #### Scenario
   1) Configure Device Hostname
   2) Configure Network interface
-  3) install DHCP Package
-  4) Configure DHCP Server
+  3) install ISC DHCP Package
+  4) Configure ISC DHCP Server
   5) Configure DHCP Relay Agent
-  6) Configure DHCP Logging
+  6) Configure ISC DHCP Logging
   7) Verify IP Address Assignment
 
 #### Step 1 - Configure Device Hostname
@@ -69,7 +77,7 @@ $ ip route
 $ cat /etc/resolv.conf
 ```
 
-#### Step 3 - install DHCP Package
+#### Step 3 - install ISC DHCP Package
 
 ```shell
 $ ping 8.8.8.8
@@ -98,7 +106,7 @@ udp    -        0.0.0.0:67            0.0.0.0:*
 $ ss -tulpn | grep dhcpd
 ```
 
-#### Step 4 - Configure DHCP Server
+#### Step 4 - Configure ISC DHCP Server
 
 ```shell
 $ ip address
@@ -184,7 +192,7 @@ $ sudo dhcpd -t
 ```
 
 ```shell
-# Restart DHCP Service
+# Restart ISC DHCP Service
 $ sudo systemctl restart isc-dhcp-server
 ```
 
@@ -210,21 +218,21 @@ $ sudo journalctl -f -u isc-dhcp-server
 
 Link: [Configure DHCP Relay Agent (for PNETLab Environment)](1_EnterpriseNetwork.md#step-8--configure-dhcp-relay-agent-for-pnetlab-environment)  
 
-#### Step 6 - Configure DHCP Logging
+#### Step 6 - Configure ISC DHCP Logging
 
-DHCP Logging Methods for ISC DHCP Server:  
+DHCP Logging Methods:  
  1) systemd-journald  
  2) rsyslog  
  3) syslog-ng  
 
-**Step 6.1 - systemd-journald (default DHCP Logging)**
+**Step 6.1 - systemd-journald (default ISC DHCP Logging)**
 
-```shell
+```shell 
 $ sudo journalctl -u isc-dhcp-server
 $ sudo journalctl -f -u isc-dhcp-server
 ```
 
-**Step 6.2 - Configure DHCP Logging using rsyslog**
+**Step 6.2 - Configure ISC DHCP Logging using rsyslog**
 
 ```shell
 # install rsyslog
@@ -294,7 +302,7 @@ $ sudo logrotate -f /etc/logrotate.d/dhcpd
 /var/log/dhcpd.log.1.gz
 ```
 
-**Step 6.3 - Configure DHCP Logging using syslog-ng**
+**Step 6.3 - Configure ISC DHCP Logging using syslog-ng**
 
 ```shell
 # install syslog-ng
