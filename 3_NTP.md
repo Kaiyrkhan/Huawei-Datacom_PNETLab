@@ -103,7 +103,7 @@ student@ubuntu:~$ networkctl status
 #### Step 3 - install Chrony Package
 
 > Package атауы: **chrony**  
-> Daemon/Service атауы: **chrony** немесе **chronyd**  
+> Daemon/Service атауы: **chronyd**  
 
 > **chronyd** – the actual daemon to sync and serve via the Network Time Protocol  
 > **chronyc** – command-line interface for the chrony daemon  
@@ -117,9 +117,141 @@ $ sudo apt install -y chrony
 $ sudo systemctl status chronyd
 ```
 
-Уақыт белдеуін (Time Zone) өзгерту
 ```shell
+$ ss -tulpn
+```
+
+#### Step 4 - Configure Chrony as an NTP Server
+
+```shell
+# Уақыт белдеуін (Time Zone) өзгерту
 $ sudo timedatectl set-timezone Asia/Almaty
+
 $ timedatectl status
 ```
 > Time Zones in Kazakhstan https://www.timeanddate.com/time/zone/kazakhstan  
+
+```shell
+RHEL/Rocky/Oracle
+$ sudo vi /etc/chrony.conf
+#pool 2.rocky.pool.ntp.org iburst        // артық DNS атауларды "#" comment-ге алып, төменгі қатарға Қазақстанға ең жақын NTP сервердің DNS атауын енгіземіз!
+
+Debian/Ubuntu
+$ sudo nano /etc/chrony/chrony.conf
+#pool 2.debian.pool.ntp.org iburst       // артық DNS атауларды "#" comment-ге алып, төменгі қатарға Қазақстанға ең жақын NTP сервердің DNS атауын енгіземіз!
+
+# Kazakhstan NTP pool
+server ntp.nic.kz iburst
+pool 2.kz.pool.ntp.org iburst
+pool 1.kz.pool.ntp.org iburst
+
+# Global NTP pool
+pool time.google.com iburst
+pool time.cloudflare.com iburst
+
+# Listen on all interfaces
+bindcmdaddress 0.0.0.0
+bindcmdaddress ::
+
+# Allow NTP client access from Local Network (жергілікті желіге рұқсат ету)
+allow 172.16.111.0/24
+allow 172.16.112.0/24
+allow 50.1.1.1/32
+allow 50.3.3.3/32
+allow 50.5.5.5/32
+allow 50.7.7.7/32
+allow 50.8.8.8/32
+allow 10.1.50.101/32
+
+# NTP authentication
+keyfile /etc/chrony/chrony.keys
+
+# Log files location
+logdir /var/log/chrony
+log measurements statistics tracking
+
+# Hardware clock synchronization
+rtcsync
+
+# Time adjustment settings (уақыт дәлдігін реттеу)
+makestep 1 3
+```
+
+```shell
+# Configure NTP Authentication
+
+$ sudo nano /etc/chrony/chrony.keys
+# <key_id> <algorithm> <secret_key>
+1 MD5 Hello@123
+
+CTRL+O, ENTER, CTRL+X
+CTRL+L
+```
+> ЕСКЕРТУ: мұндағы, "MD5" **бас әріппен** жазылуы міндетті!  
+
+#### Step 5 - Configure NTP Firewall Rule
+
+```shell
+Firewalld конфигурациясы (RHEL/Rocky)
+
+$ sudo systemctl status firewalld
+
+$ sudo firewall-cmd --permanent --add-port=123/udp
+$ sudo firewall-cmd --permanent --add-service=ntp
+немесе
+$ sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="172.16.11.0/24" port protocol="udp" port="123" accept'
+$ sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="172.16.12.0/24" port protocol="udp" port="123" accept'
+
+$ sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" port protocol="udp" port="123" drop'
+
+$ sudo firewall-cmd --reload
+
+$ sudo firewall-cmd --list-rich-rules
+$ sudo firewall-cmd --list-all --zone=public
+```
+
+```shell
+UFW конфигурациясы (Debian/Ubuntu)
+
+$ sudo ufw status
+$ sudo ufw enable
+
+$ sudo ufw allow 123/udp
+немесе
+$ sudo ufw allow from 172.16.11.0/24 to any port 123 proto udp
+$ sudo ufw allow from 172.16.12.0/24 to any port 123 proto udp
+
+$ sudo ufw deny proto udp from any to any port 123
+
+$ sudo ufw reload
+$ sudo ufw status verbose
+```
+
+Daemon-ды қайта жүктеу
+```shell
+$ sudo systemctl restart chronyd
+немесе
+$ sudo systemctl reload chronyd
+
+$ sudo systemctl status chronyd
+```
+
+```shell
+$ ss -tulpn
+Netid  State    Local Address:Port    Peer Address:Port
+udp    -        0.0.0.0:123           0.0.0.0:*
+```
+
+#### Step 6 - Check Chrony Synchronization Status
+
+```shell
+$ sudo chronyc tracking
+$ sudo chronyc sources -v
+$ sudo chronyc activity
+$ sudo chronyc clients
+```
+
+```shell
+$ sudo apt install ntpdate
+$ sudo ntpdate -q 80.241.0.72
+```
