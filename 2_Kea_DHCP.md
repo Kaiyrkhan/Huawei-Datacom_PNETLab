@@ -107,7 +107,7 @@ $ systemctl list-units | grep kea
 kea-dhcp4-server.service
 
 $ systemctl status kea-dhcp4-server
-Active: active (running)
+active (running)
 
 $ systemctl is-enabled kea-dhcp4-server
 enabled
