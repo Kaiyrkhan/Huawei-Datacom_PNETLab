@@ -266,7 +266,7 @@ $ tail /var/log/dhcpd.log
 $ tail -f /var/log/dhcpd.log
 ```
 
-**Configure DHCP Log Rotation (Production ортаға арналған)**
+**Configure DHCP Log Rotation**
 
 ```shell
 # Configure DHCP Log Rotation
