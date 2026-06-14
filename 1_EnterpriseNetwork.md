@@ -568,9 +568,13 @@ display ospf peer brief
 
 ## Step 7 – Configure DHCP Server
 
-**Configure DHCP Server on Linux**
+**Configure ISC DHCP Server on Linux**
 
-Link: [Configure DHCP Server on Linux](2_DHCP.md)  
+Link: [Configure DHCP Server on Linux](2_ISC_DHCP.md)  
+
+**Configure Kea DHCP Server on Linux**
+
+Link: [Configure DHCP Server on Linux](2_Kea_DHCP.md)  
 
 **Configure DHCP Server on Huawei VRP**
 
