@@ -408,7 +408,7 @@ student@h4:~$ sudo systemctl restart NetworkManager
 student@dhcp:~$ cat /var/lib/dhcp/dhcpd.leases
 ```
 
-## Configure DHCP Server on Ubuntu 24.04.4 LTS
+## Configure ISC DHCP Server on Ubuntu 24.04.4 LTS
 
 #### Step 1 - Configure Device Hostname
 
