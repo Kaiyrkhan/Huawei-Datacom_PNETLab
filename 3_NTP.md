@@ -24,7 +24,7 @@ Linux 6.8.0-101-generic x86_64 GNU/Linux
   4) Configure Chrony as an NTP Server
   5) Configure NTP Authentication
   6) Configure NTP Firewall Rule
-  7) Verify NTP Server Operation
+  7) Verify Chrony Synchronization Status
 
 #### Step 1 - Configure Device Hostname
 
