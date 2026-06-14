@@ -29,7 +29,7 @@ Linux 6.8.0-101-generic x86_64 GNU/Linux
 
 #### Step 1 - Configure Device Hostname
 
-Link: [Configure Device Hostname](./Kaiyrkhan/Linux_Fundamentals/blob/main/Lab10_Networking.md)
+Link: [Configure Device Hostname](https://github.com/Kaiyrkhan/Linux_Fundamentals/blob/main/Lab10_Networking.md)
 
 #### Step 2 - Configure Network interface
 
