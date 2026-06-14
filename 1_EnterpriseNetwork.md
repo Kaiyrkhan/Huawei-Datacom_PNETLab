@@ -570,13 +570,13 @@ display ospf peer brief
 
 **Configure ISC DHCP Server on Linux**
 
-Link: [Configure DHCP Server on Linux](2_ISC_DHCP.md)  
+Link: [Configure ISC DHCP Server on Linux](2_ISC_DHCP.md) сілтемені Ctrl + Click арқылы ашыңыз!  
 
 **Configure Kea DHCP Server on Linux**
 
-Link: [Configure DHCP Server on Linux](2_Kea_DHCP.md)  
+Link: [Configure Kea DHCP Server on Linux](2_Kea_DHCP.md) сілтемені Ctrl + Click арқылы ашыңыз!  
 
-**Configure DHCP Server on Huawei VRP**
+**Configure DHCP Server on Huawei VRP (Router, Switch)**
 
 ```shell
 dhcp enable
