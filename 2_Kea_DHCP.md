@@ -134,13 +134,22 @@ udp    -        0.0.0.0:67            0.0.0.0:*
 #### Step 4 - Configure Kea DHCP Server
 
 ```shell
+$ sudo grep -vE '^\s*(//|#|$)' /etc/kea/kea-dhcp4.conf
+немесе
 $ sudo cat /etc/kea/kea-dhcp4.conf | sed '/^\s*\/\//d;/^\s*$/d'
+$ sudo cat /etc/kea/kea-dhcp4.conf | sed '/^\s*#/d;/^\s*\/\//d;/^\s*$/d'
 немесе
 $ sudo sed '/^\s*\/\//d;/^\s*$/d' /etc/kea/kea-dhcp4.conf
-немесе
-$ sudo grep -vE '^\s*(//|#|$)' /etc/kea/kea-dhcp4.conf
+$ sudo sed '/^\s*#/d;/^\s*\/\//d;/^\s*$/d' /etc/kea/kea-dhcp4.conf
 ```
-> Егер файлда "//" және "#" comment болса, онда sed '/^\s*#/d;/^\s*\/\//d;/^\s*$/d' /etc/kea/kea-dhcp4.conf  
+
+```shell
+# Create Backup file
+$ sudo cp /etc/kea/kea-dhcp4.conf /etc/kea/kea-dhcp4.conf.backup
+$ sudo ls -l /etc/kea/
+kea-dhcp4.conf
+kea-dhcp4.conf.backup
+```
 
 ```shell
 $ sudo nano /etc/kea/kea-dhcp4.conf
