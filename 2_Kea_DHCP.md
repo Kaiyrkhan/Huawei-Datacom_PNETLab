@@ -221,6 +221,60 @@ $ sudo journalctl -f -u kea-dhcp4-server
 ```
 
 ```shell
+# Verify DHCP Leases
+
+$ sudo ls -l /var/lib/kea/
+
+$ sudo less /var/lib/kea/kea-leases4.csv
+$ sudo cat /var/lib/kea/kea-leases4.csv
+```
+
+#### Step 5 - Configure Kea DHCP Logging
+
+```shell
+$ sudo nano /etc/kea/kea-dhcp4.conf
+
+        "reservations": [
+          {
+            "hostname": "h1",
+            "hw-address": "50:91:6a:00:0d:00",
+            "ip-address": "172.16.111.8"
+          }
+        ]
+      }
+    ],
+
+    "loggers": [
+      {
+        "name": "kea-dhcp4",
+        "output_options": [
+          {
+            "output": "/var/log/kea/kea-dhcp4.log",
+            "maxsize": 1048576,
+            "maxver": 8
+          }
+        ],
+        "severity": "INFO"
+      }
+    ]
+  }
+}
+```
+
+```shell
+sudo mkdir -p /var/log/kea
+sudo touch /var/log/kea/kea-dhcp4.log
+
+sudo kea-dhcp4 -t /etc/kea/kea-dhcp4.conf
+sudo systemctl restart isc-kea-dhcp4-server
+sudo tail -f /var/log/kea/kea-dhcp4.log
+```
+
+```shell
+journalctl -u isc-kea-dhcp4-server -f
+```
+
+```shell
 ```
 
 ```shell
