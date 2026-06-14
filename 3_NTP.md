@@ -29,11 +29,11 @@ Linux 6.8.0-101-generic x86_64 GNU/Linux
 
 #### Step 1 - Configure Device Hostname
 
-Link: [Configure Device Hostname](./Linux_Fundamentals/blob/main/Lab10_Networking.md)
+Link: [Configure Device Hostname](Kaiyrkhan/Linux_Fundamentals/blob/main/Lab10_Networking.md)
 
 #### Step 2 - Configure Network interface
 
-Link: [Configure Network interface](./Linux_Fundamentals/blob/main/Lab10_Networking.md)
+Link: [Configure Network interface](Kaiyrkhan/Linux_Fundamentals/blob/main/Lab10_Networking.md)
 
 #### Step 3 - install Chrony Package
 
