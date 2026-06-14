@@ -318,13 +318,43 @@ $ sudo systemctl restart chronyd
 $ sudo chronyc tracking
 $ sudo chronyc sources -v
 
+$ sudo chronyc makestep
 $ sudo chronyc -a makestep
 
+Synchronizing Time (Уақытты синхрондау)
 $ sudo apt install ntpdate
 $ sudo ntpdate -q 10.10.10.123
+$ sudo ntpdate -u 10.10.10.123                // firewall кедергі жасаған жағдайда қолдану
+
+# System Clock
+$ date
+# Hardware Clock (RTC)
+$ sudo hwclock -r
 
 # Verify System Time Synchronization
 $ timedatectl status
 немесе
 timedatectl show --property=NTPSynchronized
+```
+
+## Configure NTP Client using Chrony on Huawei VRP
+
+```shell
+system-view
+
+clock timezone KZ add 5
+
+ntp-service enable
+ntp-service unicast-server 10.10.10.123
+```
+
+```shell
+display ntp-service status
+display ntp-service sessions
+```
+
+```shell
+acl number 2123
+ rule permit ip source 10.10.10.123 0.0.0.0
+ntp-service acl 2123
 ```
