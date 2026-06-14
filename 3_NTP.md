@@ -24,7 +24,8 @@ Linux 6.8.0-101-generic x86_64 GNU/Linux
   4) Configure Chrony as an NTP Server
   5) Configure NTP Authentication
   6) Configure NTP Firewall Rule
-  7) Verify Chrony Synchronization Status
+  7) Check Chrony Synchronization Status
+  8) Verify NTP Client Synchronization
 
 #### Step 1 - Configure Device Hostname
 
@@ -56,8 +57,13 @@ network:
       dhcp4: false
       addresses:
         - 10.10.10.123/24
+      gateway4: 10.10.10.1
+      nameservers: 
+        search: [lab.local]
+        addresses: [8.8.8.8]
 
 CTRL+O, ENTER, CTRL+X
+CTRL+L
 ```
 > **ЕСКЕРТУ:** *YAML файлында бос орындар (indentation) өте маңызды. Әр қатарда 2 бос орын қолдануды ұмытпаңыз! (Tab пернесін қолданбаған дұрыс)*  
 
