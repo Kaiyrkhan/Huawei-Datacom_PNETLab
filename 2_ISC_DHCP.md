@@ -1,6 +1,6 @@
 # Configure ISC DHCP Server on Linux
 
-> Linux distribution: Debian 12/13, Ubuntu 24.04.4 LTS, Rocky 9.7, openEuler 24.03 LTS SP3, Oracle 7.9  
+> Linux distribution: Debian 13.x, Ubuntu 24.04.4 LTS, Rocky 9.x, openEuler 24.03 LTS SP3, Oracle 7.9  
 
 ### Network Topology
 ![Topology Enterprise Network Design](images/Topology_EnterpriseNetworkDesign_Huawei_v1.png)  
