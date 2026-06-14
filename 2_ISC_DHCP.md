@@ -10,6 +10,12 @@
 
 ## Configure ISC DHCP Server on Debian
 
+```shell
+student@ubuntu:~$ lsb_release -a
+student@ubuntu:~$ uname -rs
+Linux 6.8.0-101-generic x86_64 GNU/Linux
+```
+
 #### Scenario
   1) Configure Device Hostname
   2) Configure Network interface
