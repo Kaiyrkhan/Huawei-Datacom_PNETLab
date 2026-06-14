@@ -29,13 +29,13 @@ Linux 6.8.0-101-generic x86_64 GNU/Linux
 
 #### Step 1 - Configure Device Hostname
 
-> **ЕСКЕРТУ** Сілтемені Ctrl + Click (немесе Middle Mouse Button) арқылы ашыңыз!  
+> ЕСКЕРТУ:сілтемені Ctrl + Click арқылы ашыңыз!  
 
 Link: [Configure Device Hostname](https://github.com/Kaiyrkhan/Linux_Fundamentals/blob/main/Lab10_Networking.md)
 
 #### Step 2 - Configure Network interface
 
-> **ЕСКЕРТУ** Сілтемені Ctrl + Click (немесе Middle Mouse Button) арқылы ашыңыз!  
+> ЕСКЕРТУ:сілтемені Ctrl + Click арқылы ашыңыз!  
 
 Link: [Configure Network interface](https://github.com/Kaiyrkhan/Linux_Fundamentals/blob/main/Lab10_Networking.md)
 
