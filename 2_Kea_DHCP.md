@@ -31,10 +31,10 @@ Linux 6.12.73+deb13-amd64 x86_64 GNU/Linux
 #### Scenario
   1) Configure Device Hostname
   2) Configure Network interface
-  3) install DHCP Package
-  4) Configure DHCP Server
+  3) install Kea DHCP Package
+  4) Configure Kea DHCP Server
   5) Configure DHCP Relay Agent
-  6) Configure DHCP Logging
+  6) Configure Kea DHCP Logging
   7) Verify IP Address Assignment
 
 #### Step 1 - Configure Device Hostname
@@ -77,7 +77,7 @@ $ ip route
 $ cat /etc/resolv.conf
 ```
 
-#### Step 3 - install DHCP Package
+#### Step 3 - install Kea DHCP Package
 
 ```shell
 $ ping 8.8.8.8
@@ -96,7 +96,7 @@ kea-dhcp4-server.service
 > Daemon/Service атауы: kea-dhcp4-server  
 
 ```shell
-# install DHCP Package
+# install Kea DHCP Package
 
 $ sudo apt update
 $ sudo apt install -y kea-dhcp4-server
@@ -110,10 +110,11 @@ $ sudo dpkg -s kea-dhcp4-server
 ```
 
 ```shell
-# Status DHCP Service
+# Verify Service Status
 $ sudo systemctl status kea-dhcp4-server
 active (running)
 
+# Verify Service Startup Status
 $ sudo systemctl is-enabled kea-dhcp4-server
 enabled
 ```
@@ -211,7 +212,10 @@ $ sudo kea-dhcp4 -t /etc/kea/kea-dhcp4.conf
 ```
 
 ```shell
+# Restart DHCP Service
 $ sudo systemctl restart kea-dhcp4-server
+
+# Verify Service Status
 $ sudo systemctl status kea-dhcp4-server
 ```
 
