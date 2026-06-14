@@ -11,6 +11,8 @@
 ## Configure ISC DHCP Server on Debian
 
 ```shell
+# System Information
+
 student@debian:~$ lsb_release -a
 student@debian:~$ cat /etc/debian_version
 student@debian:~$ uname -rs
