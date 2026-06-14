@@ -102,10 +102,8 @@ $ ss -tulpn | grep dhcpd
 
 ```shell
 $ ip address
-```
-```shell
-# Configure DHCP Listening Interface
 
+# Configure DHCP Listening Interface
 $ sudo nano /etc/default/isc-dhcp-server
 INTERFACESv4="ens3"
 INTERFACESv6=""
