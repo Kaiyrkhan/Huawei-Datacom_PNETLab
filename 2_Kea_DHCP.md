@@ -130,3 +130,91 @@ $ ss -tulpn
 Netid  State    Local Address:Port    Peer Address:Port
 udp    -        0.0.0.0:67            0.0.0.0:*
 ```
+
+#### Step 4 - Configure Kea DHCP Server
+
+```shell
+$ sudo cat /etc/kea/kea-dhcp4.conf | sed '/^\s*\/\//d;/^\s*$/d'
+немесе
+$ sudo sed '/^\s*\/\//d;/^\s*$/d' /etc/kea/kea-dhcp4.conf
+немесе
+$ sudo grep -vE '^\s*(//|#|$)' /etc/kea/kea-dhcp4.conf
+```
+> Егер файлда "//" және "#" comment болса, онда sed '/^\s*#/d;/^\s*\/\//d;/^\s*$/d' /etc/kea/kea-dhcp4.conf  
+
+```shell
+$ sudo nano /etc/kea/kea-dhcp4.conf
+
+{
+  "Dhcp4": {
+    "interfaces-config": {
+      "interfaces": [ "ens3" ]
+    },
+
+    "valid-lifetime": 600,
+    "renew-timer": 300,
+    "rebind-timer": 500,
+
+    "lease-database": {
+      "type": "memfile",
+      "persist": true,
+      "name": "/var/lib/kea/kea-leases4.csv"
+    },
+
+    "option-data": [
+      {
+        "name": "domain-name",
+        "data": "lab.local"
+      },
+      {
+        "name": "domain-name-servers",
+        "data": "8.8.8.8"
+      }
+    ],
+
+    "subnet4": [
+      {
+        "subnet": "10.10.10.0/24"
+      },
+      {
+        "subnet": "172.16.111.0/24",
+        "pools": [
+          {
+            "pool": "172.16.111.11 - 172.16.111.250"
+          }
+        ],
+        "option-data": [
+          {
+            "name": "routers",
+            "data": "172.16.111.254"
+          }
+        ],
+        "reservations": [
+          {
+            "hostname": "h1",
+            "hw-address": "50:91:6a:00:0d:00",
+            "ip-address": "172.16.111.8"
+          }
+        ]
+      }
+    ]
+  }
+}
+
+CTRL+O, ENTER, CTRL+X
+CTRL+L
+```
+
+```shell
+# Check Configuration Syntax
+$ sudo kea-dhcp4 -t /etc/kea/kea-dhcp4.conf
+```
+
+```shell
+```
+
+```shell
+```
+
+```shell
+```
