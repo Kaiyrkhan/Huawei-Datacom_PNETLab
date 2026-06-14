@@ -18,14 +18,29 @@ Linux 6.8.0-101-generic x86_64 GNU/Linux
 ```
 
 #### Scenario
-  1) Configure Network interface
-  2) install Chrony Package
-  3) Configure Chrony as an NTP Server
-  4) Configure NTP Authentication
-  5) Configure NTP Firewall Rule
-  6) Verify NTP Server Operation
+  1) Configure Device Hostname
+  2) Configure Network interface
+  3) install Chrony Package
+  4) Configure Chrony as an NTP Server
+  5) Configure NTP Authentication
+  6) Configure NTP Firewall Rule
+  7) Verify NTP Server Operation
 
-#### Step 1 - Configure Network interface
+#### Step 1 - Configure Device Hostname
+
+```shell
+$ sudo hostnamectl set-hostname ntp
+
+$ sudo nano /etc/hosts
+127.0.1.1  ntp
+
+CTRL+O, ENTER, CTRL+X
+CTRL+L
+
+$ bash
+```
+
+#### Step 2 - Configure Network interface
 
 ```shell
 student@ubuntu:~$ ip address
@@ -58,7 +73,7 @@ student@ubuntu:~$ ip address
 student@ubuntu:~$ networkctl status
 ```
 
-#### Step 2 - install Chrony Package
+#### Step 3 - install Chrony Package
 
 > Package атауы: **chrony**  
 > Daemon/Service атауы: **chrony** немесе **chronyd**  
