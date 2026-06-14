@@ -111,16 +111,11 @@ $ sudo dpkg -s kea-dhcp4-server
 
 ```shell
 # Status DHCP Service
-$ systemctl status kea-dhcp4-server
+$ sudo systemctl status kea-dhcp4-server
 active (running)
 
-$ systemctl is-enabled kea-dhcp4-server
+$ sudo systemctl is-enabled kea-dhcp4-server
 enabled
-```
-
-```shell
-$ sudo journalctl -u kea-dhcp4-server
-$ sudo journalctl -f -u kea-dhcp4-server
 ```
 
 ```shell
@@ -148,7 +143,6 @@ $ sudo cp /etc/kea/kea-dhcp4.conf /etc/kea/kea-dhcp4.conf.backup
 $ sudo truncate -s 0 /etc/kea/kea-dhcp4.conf
 
 $ sudo nano /etc/kea/kea-dhcp4.conf
-
 {
   "Dhcp4": {
     "interfaces-config": {
@@ -178,9 +172,11 @@ $ sudo nano /etc/kea/kea-dhcp4.conf
 
     "subnet4": [
       {
+        "id": 1,
         "subnet": "10.10.10.0/24"
       },
       {
+        "id": 2,
         "subnet": "172.16.111.0/24",
         "pools": [
           {
@@ -216,6 +212,12 @@ $ sudo kea-dhcp4 -t /etc/kea/kea-dhcp4.conf
 
 ```shell
 $ sudo systemctl restart kea-dhcp4-server
+$ sudo systemctl status kea-dhcp4-server
+```
+
+```shell
+$ sudo journalctl -u kea-dhcp4-server
+$ sudo journalctl -f -u kea-dhcp4-server
 ```
 
 ```shell
