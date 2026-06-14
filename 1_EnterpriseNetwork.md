@@ -568,15 +568,11 @@ display ospf peer brief
 
 ## Step 7 – Configure DHCP Server
 
-**Configure ISC DHCP Server on Linux**
-
-Link: [Configure ISC DHCP Server on Linux](2_ISC_DHCP.md) сілтемені Ctrl + Click арқылы ашыңыз!  
-
-**Configure Kea DHCP Server on Linux**
-
-Link: [Configure Kea DHCP Server on Linux](2_Kea_DHCP.md) сілтемені Ctrl + Click арқылы ашыңыз!  
-
-**Configure DHCP Server on Huawei VRP (Router, Switch)**
+**[Method 1: Configure ISC DHCP Server on Linux](2_ISC_DHCP.md)** сілтемені Ctrl + Click арқылы ашыңыз!  
+  
+**[Method 2: Configure Kea DHCP Server on Linux](2_Kea_DHCP.md)** сілтемені Ctrl + Click арқылы ашыңыз!  
+  
+**Method 3: Configure DHCP Server on Huawei VRP (Router, Switch)**
 
 ```shell
 dhcp enable
