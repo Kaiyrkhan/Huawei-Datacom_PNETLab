@@ -109,8 +109,12 @@ student@ubuntu:~$ networkctl status
 > **chronyc** – command-line interface for the chrony daemon  
 
 ```shell
+Debian/Ubuntu
 $ sudo apt update 
 $ sudo apt install -y chrony
+
+RHEL/Rocky/Oracle
+$ sudo dnf install -y chrony
 ```
 
 ```shell
@@ -192,15 +196,43 @@ CTRL+L
 #### Step 5 - Configure NTP Firewall Rule
 
 ```shell
-Firewalld конфигурациясы (RHEL/Rocky)
+# nftables конфигурациясы
+
+$ sudo nft add rule inet filter input udp dport 123 ip saddr 172.16.111.0/24 accept
+$ sudo nft add rule inet filter input udp dport 123 ip saddr 172.16.112.0/24 accept
+
+$ sudo nft list ruleset | sudo tee /etc/nftables.conf
+$ sudo systemctl restart nftables
+
+$ sudo nft list ruleset
+```
+
+```shell
+# iptables конфигурациясы
+
+$ sudo iptables -A INPUT -p udp --dport 123 -s 172.16.111.0/24 -j ACCEPT
+$ sudo iptables -A INPUT -p udp --dport 123 -s 172.16.112.0/24 -j ACCEPT
+$ sudo iptables -A INPUT -p udp --dport 123 -s 127.0.0.1 -j ACCEPT
+
+$ sudo netfilter-persistent save
+$ sudo netfilter-persistent reload
+немесе
+$ sudo iptables-save > /etc/iptables/rules.v4
+$ sudo systemctl restart iptables
+
+$ sudo iptables -vnL
+```
+
+```shell
+# Firewalld конфигурациясы (RHEL/Rocky)
 
 $ sudo systemctl status firewalld
 
 $ sudo firewall-cmd --permanent --add-port=123/udp
 $ sudo firewall-cmd --permanent --add-service=ntp
 немесе
-$ sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="172.16.11.0/24" port protocol="udp" port="123" accept'
-$ sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="172.16.12.0/24" port protocol="udp" port="123" accept'
+$ sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="172.16.111.0/24" port protocol="udp" port="123" accept'
+$ sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="172.16.112.0/24" port protocol="udp" port="123" accept'
 
 $ sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" port protocol="udp" port="123" drop'
 
@@ -211,15 +243,15 @@ $ sudo firewall-cmd --list-all --zone=public
 ```
 
 ```shell
-UFW конфигурациясы (Debian/Ubuntu)
+# UFW конфигурациясы (Debian/Ubuntu)
 
 $ sudo ufw status
 $ sudo ufw enable
 
 $ sudo ufw allow 123/udp
 немесе
-$ sudo ufw allow from 172.16.11.0/24 to any port 123 proto udp
-$ sudo ufw allow from 172.16.12.0/24 to any port 123 proto udp
+$ sudo ufw allow from 172.16.111.0/24 to any port 123 proto udp
+$ sudo ufw allow from 172.16.112.0/24 to any port 123 proto udp
 
 $ sudo ufw deny proto udp from any to any port 123
 
@@ -227,8 +259,9 @@ $ sudo ufw reload
 $ sudo ufw status verbose
 ```
 
-Daemon-ды қайта жүктеу
 ```shell
+# Daemon-ды қайта жүктеу
+
 $ sudo systemctl restart chronyd
 немесе
 $ sudo systemctl reload chronyd
@@ -254,4 +287,44 @@ $ sudo chronyc clients
 ```shell
 $ sudo apt install ntpdate
 $ sudo ntpdate -q 80.241.0.72
+```
+
+## Configure NTP Client using Chrony on Linux
+
+```shell
+Debian/Ubuntu
+$ sudo apt install chrony
+
+RHEL/Rocky/Oracle
+$ sudo dnf install chrony
+
+$ sudo systemctl status chronyd
+```
+
+```shell
+RHEL/Rocky/Oracle
+$ sudo vi /etc/chrony.conf
+server 10.10.10.123 iburst
+
+Debian/Ubuntu
+$ sudo nano /etc/chrony/chrony.conf
+server 10.10.10.123 iburst
+
+$ sudo systemctl restart chronyd
+```
+
+```shell
+# Verify NTP Client Synchronization
+$ sudo chronyc tracking
+$ sudo chronyc sources -v
+
+$ sudo chronyc -a makestep
+
+$ sudo apt install ntpdate
+$ sudo ntpdate -q 10.10.10.123
+
+# Verify System Time Synchronization
+$ timedatectl status
+немесе
+timedatectl show --property=NTPSynchronized
 ```
