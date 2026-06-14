@@ -88,7 +88,16 @@ $ ping google.com
 $ apt search kea | grep dhcp4
 kea-dhcp4-server/stable,now 2.6.3-1 amd64
 
+$ systemctl list-units | grep kea
+kea-dhcp4-server.service
+```
+
+> Package атауы: kea-dhcp4-server  
+> Daemon/Service атауы: kea-dhcp4-server  
+
+```shell
 # install DHCP Package
+
 $ sudo apt update
 $ sudo apt install -y kea-dhcp4-server
 ```
@@ -102,10 +111,6 @@ $ sudo dpkg -s kea-dhcp4-server
 
 ```shell
 # Status DHCP Service
-
-$ systemctl list-units | grep kea
-kea-dhcp4-server.service
-
 $ systemctl status kea-dhcp4-server
 active (running)
 
