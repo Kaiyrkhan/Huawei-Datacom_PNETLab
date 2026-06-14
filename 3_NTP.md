@@ -8,7 +8,7 @@
 ### Network Topology
 ![Topology Enterprise Network Design](images/Topology_EnterpriseNetworkDesign_Huawei_v1.png)  
 
-## Configure NTP Server using Chrony on Ubuntu
+## Configure NTP Server using Chrony on Linux
 
 ```shell
 student@ubuntu:~$ lsb_release -a
@@ -29,76 +29,11 @@ Linux 6.8.0-101-generic x86_64 GNU/Linux
 
 #### Step 1 - Configure Device Hostname
 
-```shell
-$ sudo hostnamectl set-hostname ntp
-
-$ sudo nano /etc/hosts
-127.0.1.1  ntp
-
-CTRL+O, ENTER, CTRL+X
-CTRL+L
-
-$ bash
-```
+Link: [Configure Device Hostname](./Linux_Fundamentals/blob/main/Lab10_Networking.md)
 
 #### Step 2 - Configure Network interface
 
-```shell
-student@ubuntu:~$ ip address
-```
-
-```shell
-student@ubuntu:~$ sudo nano /etc/netplan/50-cloud-init.yaml
-network:
-  version: 2
-  ethernets:
-    ens3:
-      addresses:
-      - "10.10.10.123/24"
-      nameservers:
-        addresses:
-        - 8.8.8.8
-        search:
-        - LAB.LOCAL
-      routes:
-      - to: "default"
-        via: "10.10.10.1"
-
-CTRL+O, ENTER, CTRL+X
-CTRL+L
-```
-
-немесе
-
-```shell
-student@ubuntu:~$ sudo nano /etc/netplan/50-cloud-init.yaml
-network:
-  version: 2
-  ethernets:
-    ens3:
-      dhcp4: false
-      addresses: [10.10.10.123/24]
-      gateway4: 10.10.10.1
-      nameservers:
-        search: [lab.local]
-        addresses: [8.8.8.8]
-
-CTRL+O, ENTER, CTRL+X
-CTRL+L
-```
-> **ЕСКЕРТУ:** *YAML файлында бос орындар (indentation) өте маңызды. Әр қатарда 2 бос орын қолдануды ұмытпаңыз! (Tab пернесін қолданбаған дұрыс)*  
-
-```shell
-student@ubuntu:~$ sudo netplan apply
-```
-
-```shell
-student@ubuntu:~$ ip address
-```
-
-```shell
-student@ubuntu:~$ networkctl status
-```
+Link: [Configure Network interface](./Linux_Fundamentals/blob/main/Lab10_Networking.md)
 
 #### Step 3 - install Chrony Package
 
