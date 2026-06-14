@@ -287,15 +287,13 @@ $ sudo kea-dhcp4 -t /etc/kea/kea-dhcp4.conf
 $ sudo systemctl restart kea-dhcp4-server
 
 # Verify DHCP Logging
+# Verify Kea DHCP Logs
 $ sudo tail -f /var/log/kea/kea-dhcp4.log
 ```
 
 ```shell
-# Monitor DHCP Service Logs
+# Monitor Kea DHCP Service Logs
 $ sudo journalctl -f -u isc-kea-dhcp4-server
-```
-
-```shell
 ```
 
 ```shell
