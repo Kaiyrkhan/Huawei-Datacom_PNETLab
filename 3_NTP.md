@@ -51,14 +51,35 @@ student@ubuntu:~$ ip address
 student@ubuntu:~$ sudo nano /etc/netplan/50-cloud-init.yaml
 network:
   version: 2
-  renderer: networkd
+  ethernets:
+    ens3:
+      addresses:
+      - "10.10.10.123/24"
+      nameservers:
+        addresses:
+        - 8.8.8.8
+        search:
+        - LAB.LOCAL
+      routes:
+      - to: "default"
+        via: "10.10.10.1"
+
+CTRL+O, ENTER, CTRL+X
+CTRL+L
+```
+
+немесе
+
+```shell
+student@ubuntu:~$ sudo nano /etc/netplan/50-cloud-init.yaml
+network:
+  version: 2
   ethernets:
     ens3:
       dhcp4: false
-      addresses:
-        - 10.10.10.123/24
+      addresses: [10.10.10.123/24]
       gateway4: 10.10.10.1
-      nameservers: 
+      nameservers:
         search: [lab.local]
         addresses: [8.8.8.8]
 
