@@ -144,14 +144,9 @@ $ sudo sed '/^\s*#/d;/^\s*\/\//d;/^\s*$/d' /etc/kea/kea-dhcp4.conf
 ```
 
 ```shell
-# Create Backup file
 $ sudo cp /etc/kea/kea-dhcp4.conf /etc/kea/kea-dhcp4.conf.backup
-$ sudo ls -l /etc/kea/
-kea-dhcp4.conf
-kea-dhcp4.conf.backup
-```
+$ sudo truncate -s 0 /etc/kea/kea-dhcp4.conf
 
-```shell
 $ sudo nano /etc/kea/kea-dhcp4.conf
 
 {
@@ -220,6 +215,7 @@ $ sudo kea-dhcp4 -t /etc/kea/kea-dhcp4.conf
 ```
 
 ```shell
+$ sudo systemctl restart kea-dhcp4-server
 ```
 
 ```shell
