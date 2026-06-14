@@ -6,7 +6,7 @@
 > Linux distribution: Debian 12/13, Ubuntu 24.04.4 LTS, Rocky 9.7, openEuler 24.03 LTS SP3, Oracle 7.9  
 
 ### Network Topology
-![Topology Enterprise Network Design](images/Topology_EnterpriseNetworkDesign_Huawei_v1.png)  
+![Topology Enterprise Network Design](./images/Topology_EnterpriseNetworkDesign_Huawei_v1.png)  
 
 ## Configure NTP Server using Chrony on Linux
 
@@ -29,11 +29,11 @@ Linux 6.8.0-101-generic x86_64 GNU/Linux
 
 #### Step 1 - Configure Device Hostname
 
-Link: [Configure Device Hostname](Kaiyrkhan/Linux_Fundamentals/blob/main/Lab10_Networking.md)
+Link: [Configure Device Hostname](./Kaiyrkhan/Linux_Fundamentals/blob/main/Lab10_Networking.md)
 
 #### Step 2 - Configure Network interface
 
-Link: [Configure Network interface](Kaiyrkhan/Linux_Fundamentals/blob/main/Lab10_Networking.md)
+Link: [Configure Network interface](https://github.com/Kaiyrkhan/Linux_Fundamentals/blob/main/Lab10_Networking.md)
 
 #### Step 3 - install Chrony Package
 
