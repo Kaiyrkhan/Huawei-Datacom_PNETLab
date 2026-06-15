@@ -1,5 +1,4 @@
 # Lab Guide for the PNETLab Environment
-# PNETLab Lab Guide
 
   1) Huawei-Based Enterprise Network Design and Implementation
   2) DHCP
