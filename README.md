@@ -14,5 +14,5 @@
   12) Samba  
   13) NFS 
   14) Monitoring System (LibreNMS, Icinga, Zabbix)  
-  15) Centralized Logging System (syslog-ng, rsyslog + Graylog)
+  15) Centralized Logging System (syslog-ng and rsyslog + Graylog)
   16) Network Automation (Ansible, Python)
